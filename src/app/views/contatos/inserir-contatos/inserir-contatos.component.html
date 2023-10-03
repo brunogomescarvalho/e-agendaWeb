@@ -9,31 +9,58 @@
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Nome:</label>
                     <input formControlName="nome" class="form-control" type="text"
-                        placeholder="Digite o nome do contato" />
+                        placeholder="Digite o nome do contato" [ngClass]="{
+                            'is-valid':campoValido('nome') == true, 
+                            'is-invalid':campoValido('nome') == false}" />
+                    <div class="invalid-tooltip" *ngIf="campoValido('nome')==false">
+                        <span>O Nome precisa ser preenchido.</span>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Email:</label>
                     <input formControlName="email" class="form-control" type="text"
-                        placeholder="Digite o email do contato" />
+                        placeholder="Digite o email do contato" [ngClass]="{
+                            'is-valid':campoValido('email') == true, 
+                            'is-invalid':campoValido('email') == false}" />
+                    <div class="invalid-tooltip" *ngIf="campoValido('email')==false">
+                        <span *ngIf="form.get('email')?.errors?.['required']">O email precisa ser preenchido.</span>
+                        <span *ngIf="form.get('email')?.errors?.['email']">O valor precisa ter um formato de
+                            email.</span>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Telefone:</label>
                     <input formControlName="telefone" class="form-control" type="text"
-                        placeholder="Digite o telefone do contato" />
+                        placeholder="Digite o telefone do contato" [ngClass]="{
+                            'is-valid':campoValido('telefone') == true, 
+                            'is-invalid':campoValido('telefone') == false}" />
+                    <div class="invalid-tooltip" *ngIf="campoValido('telefone')==false">
+                        <span>O Telefone precisa ser preenchido.</span>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Cargo:</label>
                     <input formControlName="cargo" class="form-control" type="text"
-                        placeholder="Digite o cargo do contato" />
+                        placeholder="Digite o cargo do contato" [ngClass]="{
+                            'is-valid':campoValido('cargo') == true, 
+                            'is-invalid':campoValido('cargo') == false}" />
+                    <div class="invalid-tooltip" *ngIf="campoValido('cargo')==false">
+                        <span>O Cargo precisa ser preenchido.</span>
+                    </div>
                 </div>
 
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Empresa:</label>
                     <input formControlName="empresa" class="form-control" type="text"
-                        placeholder="Digite a empresa do contato" />
+                        placeholder="Digite a empresa do contato" [ngClass]="{
+                            'is-valid':campoValido('empresa') == true, 
+                            'is-invalid':campoValido('empresa') == false}" />
+                    <div class="invalid-tooltip" *ngIf="campoValido('empresa')==false">
+                        <span>O campo Empresa precisa ser preenchido.</span>
+                    </div>
                 </div>
 
                 <div class="card-footer g-grid d-flex gap-1 mt-5">

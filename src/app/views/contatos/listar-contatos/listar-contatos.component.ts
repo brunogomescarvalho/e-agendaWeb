@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListarContatosViewModel } from '../models/listar-contato-view-model';
+import { ListarContatosViewModel } from '../models/listar-contato.view-model';
 import { ContatoService } from '../service/contato.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ContatoService } from '../service/contato.service';
 })
 export class ListarContatosComponent implements OnInit {
   contatos?: ListarContatosViewModel[]
-  
+
   constructor(private service: ContatoService) { }
 
   ngOnInit(): void {

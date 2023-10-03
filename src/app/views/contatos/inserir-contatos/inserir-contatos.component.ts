@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { FormContatosViewModel } from '../models/form-contato-view-model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormContatosViewModel } from '../models/form-contato.view-model';
 import { ContatoService } from '../service/contato.service';
 import { Router } from '@angular/router';
 
@@ -19,11 +19,11 @@ export class InserirContatosComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      nome: new FormControl(''),
-      email: new FormControl(''),
-      telefone: new FormControl(''),
-      cargo: new FormControl(''),
-      empresa: new FormControl('')
+      nome: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      telefone: new FormControl('', [Validators.required]),
+      cargo: new FormControl('', [Validators.required]),
+      empresa: new FormControl('', [Validators.required])
     })
   }
 
@@ -32,6 +32,19 @@ export class InserirContatosComponent implements OnInit {
 
     this.service.inserir(this.contato)
       .subscribe(res => { this.router.navigate(['/contatos/listar']); console.log(res) })
+  }
+
+  campoValido(campo: string) {
+
+    let campoValido = undefined;
+
+    if (!this.form.get(campo)?.valid && !this.form.get(campo)?.pristine)
+      campoValido = false
+
+    if (this.form.get(campo)?.valid)
+      campoValido = true
+
+    return campoValido
   }
 
 }
