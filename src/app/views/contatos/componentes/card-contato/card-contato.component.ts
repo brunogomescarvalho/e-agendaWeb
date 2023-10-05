@@ -7,20 +7,20 @@ import { ListarContatosViewModel } from '../../models/listar-contato.view-model'
   styleUrls: ['./card-contato.component.css']
 })
 export class CardContatoComponent {
-  tema = 'primary'
+  tema = 'secondary'
 
-  @Output() onExcluirCard = new EventEmitter<ListarContatosViewModel>()
+  @Output() onExcluirContato = new EventEmitter<ListarContatosViewModel>()
 
-  @Output() onEditarCard = new EventEmitter<ListarContatosViewModel>()
+  @Output() onEditarContato = new EventEmitter<ListarContatosViewModel>()
 
   @Input() contato!: ListarContatosViewModel
 
   editar(contato: ListarContatosViewModel) {
-    this.onEditarCard.emit(contato)
+    this.onEditarContato.emit(contato)
   }
 
   excluir(contato: ListarContatosViewModel) {
-    this.onExcluirCard.emit(contato)
+    this.onExcluirContato.emit(contato)
   }
 
 

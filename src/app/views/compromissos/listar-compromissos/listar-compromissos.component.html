@@ -17,9 +17,11 @@
             </div>
         </div>
 
-        <div class="mt-3 row d-flex" *ngFor="let compromisso of compromissos">
-            <app-card-compromisso (onEditarCompromisso)="editar($event)" (onExcluirCompromisso)="excluir($event)" class="col-4"
+        <div class="mt-5 row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-10 "  *ngFor="let compromisso of compromissos">
+                <app-card-compromisso (onEditarCompromisso)="editar($event)" (onExcluirCompromisso)="excluir($event)"
                 [compromisso]="compromisso"></app-card-compromisso>
+            </div>
         </div>
 
     </div>

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ListaCompromissosViewModel } from '../../models/listar-compromissos.view-model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-compromisso',
@@ -9,18 +8,18 @@ import { Router } from '@angular/router';
 })
 export class CardCompromissoComponent {
 
+  tema = 'secondary'
+
   @Input({ required: true }) compromisso!: ListaCompromissosViewModel
 
   @Output() onExcluirCompromisso = new EventEmitter<ListaCompromissosViewModel>()
 
   @Output() onEditarCompromisso = new EventEmitter<ListaCompromissosViewModel>()
 
-  constructor(private router: Router) { }
-
   public editar(compromisso: ListaCompromissosViewModel) {
-    this.router.navigate(['/compromissos/editar', compromisso.id])
+    this.onEditarCompromisso.emit(compromisso)
   }
   public excluir(compromisso: any) {
-    this.router.navigate(['/compromissos/excluir', compromisso.id])
+    this.onExcluirCompromisso.emit(compromisso)
   }
 }
