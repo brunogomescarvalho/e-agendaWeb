@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { FormContatosViewModel } from "../models/form-contato.view-model";
+
 import { Observable, map } from "rxjs";
 import { VisualizarContatoViewModel } from "../models/visualizar-contato.view-model";
+import { FormContatosViewModel } from "../models/form-contato-view-model";
 
 @Injectable()
 
