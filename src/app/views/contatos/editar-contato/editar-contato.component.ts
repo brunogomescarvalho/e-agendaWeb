@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ContatoService } from '../service/contato.service';
 import { FormContatosViewModel } from '../models/form-contato-view-model';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-editar-contato',
@@ -20,16 +21,21 @@ export class EditarContatoComponent {
   ngOnInit(): void {
     this.idSelecionado = this.route.snapshot.paramMap.get('id')!
 
-    this.service.selecionarPorId(this.idSelecionado).subscribe(res => {
-      this.contato = res;
+    this.service.selecionarPorId(this.idSelecionado).subscribe({
+      error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
+      next: (res) => this.contato = res
+
     })
   }
 
   editar(contato: FormContatosViewModel) {
     this.contato = contato
-    this.service.editar(this.idSelecionado!, this.contato).subscribe(() => {
-      this.toast.success('Contato Editado Com Sucesso!', 'Sucesso!'),
-        this.router.navigate(['/contatos/listar'])
+    this.service.editar(this.idSelecionado!, this.contato).subscribe({
+      error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
+      next: () => {
+        this.toast.success('Contato Editado Com Sucesso!', 'Sucesso!'),
+          this.router.navigate(['/contatos/listar'])
+      }
     })
   }
 }

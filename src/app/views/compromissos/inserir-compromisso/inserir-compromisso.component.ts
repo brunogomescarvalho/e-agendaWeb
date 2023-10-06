@@ -4,6 +4,8 @@ import { ListarContatosViewModel } from '../../contatos/models/listar-contato.vi
 import { ContatoService } from '../../contatos/service/contato.service';
 import { CompromissoService } from '../service/compromisso.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inserir-compromisso',
@@ -12,19 +14,36 @@ import { Router } from '@angular/router';
 })
 export class InserirCompromissoComponent implements OnInit {
 
- 
+
   contatos!: ListarContatosViewModel[]
 
-  constructor(private contatoService: ContatoService, private compromissoService: CompromissoService, private router: Router) { }
+  constructor(private contatoService: ContatoService, private compromissoService: CompromissoService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
+    this.obterContatos();
+  }
+
+  private obterContatos() {
     this.contatoService.selecionarTodos()
-      .subscribe(res => this.contatos = res)
+      .subscribe({
+        error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
+        next: (contatos) => this.contatos = contatos,
+        complete: () => {
+          if (this.contatos.length == 0)
+            this.toast.warning('Nenhum contato cadastrado até o momento!');
+        }
+      });
   }
 
   inserir(compromisso: FormCompromissoViewModel) {
     this.compromissoService.inserir(compromisso)
-      .subscribe(() => this.router.navigate(['/compromissos/listar']))
+      .subscribe({
+        error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
+        next: () => {
+          this.toast.success('Compromisso cadastrado com sucesso', "Sucesso")
+          this.router.navigate(['/compromissos/listar'])
+        }
+      })
   }
 
 }

@@ -4,6 +4,7 @@ import { ListarContatosViewModel } from 'src/app/views/contatos/models/listar-co
 import { FormCompromissoViewModel } from '../../models/form-compromisso.view-model';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { TipoLocal } from '../../models/TipoLocal';
 
 @Component({
   selector: 'app-formulario-compromisso',
@@ -114,7 +115,12 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
     return null;
   }
 
-
+  tipoLocalAlterado(local: TipoLocal) {
+    switch (local) {
+      case TipoLocal.PRESENCIAL: this.form.patchValue({ link: null }); break
+      case TipoLocal.REMOTO: this.form.patchValue({ local: null }); break
+    }
+  }
 }
 
 

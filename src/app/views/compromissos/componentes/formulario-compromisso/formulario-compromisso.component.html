@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
     <div class="row">
         <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
             <div class="text-md-start">
@@ -6,32 +6,37 @@
             </div>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
-                <!-- {{form.value|json}} -->
+                {{form.value|json}}
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Assunto:</label>
-                    <input formControlName="assunto"  class="form-control" type="text" placeholder="Digite o assunto do compromisso" />
+                    <input formControlName="assunto" class="form-control" type="text"
+                        placeholder="Digite o assunto do compromisso" />
                 </div>
 
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Tipo de Compromisso:</label>
 
                     <div class="d-flex align-items-center gap-2">
-                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="0" />
+                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="0"
+                            (change)="tipoLocalAlterado(0)" />
                         Remoto
 
-                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="1" />
+                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="1"
+                            (change)="tipoLocalAlterado(1)" />
                         Presencial
                     </div>
                 </div>
 
-                <div class="form-group mb-3 position-relative">
+                <div *ngIf="form.value.tipoLocal === 0" class="form-group mb-3 position-relative">
                     <label class="form-label">Link:</label>
-                    <input [readonly]="form.value.tipoLocal == 1" formControlName="link" class="form-control" type="text" placeholder="Digite o link do compromisso" />
+                    <input formControlName="link" class="form-control" type="text"
+                        placeholder="Digite o link do compromisso" />
                 </div>
 
-                <div class="form-group mb-3 position-relative">
+                <div *ngIf="form.value.tipoLocal === 1" class="form-group mb-3 position-relative">
                     <label class="form-label">Local:</label>
-                    <input [readonly]="form.value.tipoLocal == 0" formControlName="local" class="form-control" type="text" placeholder="Digite o local do compromisso" />
+                    <input formControlName="local" class="form-control" type="text"
+                        placeholder="Digite o local do compromisso" />
                 </div>
 
                 <div class="form-group mb-3 position-relative">
@@ -42,12 +47,14 @@
                 <div class="form-group mb-3 position-relative row">
                     <div class="col-6">
                         <label class="form-label">Hora de Início:</label>
-                        <input formControlName="horaInicio" class="form-control" type="time" placeholder="Digite o telefone do contato" />
+                        <input formControlName="horaInicio" class="form-control" type="time"
+                            placeholder="Digite o telefone do contato" />
                     </div>
 
                     <div class="col">
                         <label class="form-label">Hora de Término:</label>
-                        <input formControlName="horaTermino" class="form-control" type="time" placeholder="Digite o telefone do contato" />
+                        <input formControlName="horaTermino" class="form-control" type="time"
+                            placeholder="Digite o telefone do contato" />
                     </div>
                 </div>
 

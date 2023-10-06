@@ -7,7 +7,7 @@ import { ListarContatosViewModel } from '../../models/listar-contato.view-model'
   styleUrls: ['./card-contato.component.css']
 })
 export class CardContatoComponent {
-  tema = 'secondary'
+  tema = 'info'
 
   @Output() onExcluirContato = new EventEmitter<ListarContatosViewModel>()
 
