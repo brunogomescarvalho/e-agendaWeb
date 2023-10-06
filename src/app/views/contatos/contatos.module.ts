@@ -9,6 +9,7 @@ import { EditarContatoComponent } from './editar-contato/editar-contato.componen
 import { ExcluirContatoComponent } from './excluir-contato/excluir-contato.component';
 import { CardContatoComponent } from './componentes/card-contato/card-contato.component';
 import { FormularioContatoComponent } from './componentes/formulario-contato/formulario-contato.component';
+import 'src/app/extensions/form-group.extension';
 
 
 
@@ -24,10 +25,12 @@ import { FormularioContatoComponent } from './componentes/formulario-contato/for
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    
   ],
   providers:[
-    ContatoService
+    ContatoService,
+  
   ]
 })
 export class ContatosModule { }

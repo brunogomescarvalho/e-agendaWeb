@@ -10,6 +10,7 @@ import { CompromissoService } from './service/compromisso.service';
 import { CardCompromissoComponent } from './componentes/card-compromisso/card-compromisso.component';
 import { EditarCompromissosComponent } from './editar-compromissos/editar-compromissos.component';
 import { ExcluirCompromissoComponent } from './excluir-compromisso/excluir-compromisso.component';
+import 'src/app/extensions/form-group.extension';
 
 
 

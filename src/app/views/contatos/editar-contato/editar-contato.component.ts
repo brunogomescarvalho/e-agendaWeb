@@ -4,6 +4,7 @@ import { ContatoService } from '../service/contato.service';
 import { FormContatosViewModel } from '../models/form-contato-view-model';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-editar-contato',
@@ -20,12 +21,12 @@ export class EditarContatoComponent {
 
   ngOnInit(): void {
     this.idSelecionado = this.route.snapshot.paramMap.get('id')!
+    this.route.data.pipe(map((dados => dados['contato'])))
+      .subscribe({
+        error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
+        next: (res: any) => this.contato = res
+      })
 
-    this.service.selecionarPorId(this.idSelecionado).subscribe({
-      error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
-      next: (res) => this.contato = res
-
-    })
   }
 
   editar(contato: FormContatosViewModel) {

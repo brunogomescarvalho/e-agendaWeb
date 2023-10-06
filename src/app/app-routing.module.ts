@@ -9,6 +9,9 @@ import { InserirCompromissoComponent } from './views/compromissos/inserir-compro
 import { ListarCompromissosComponent } from './views/compromissos/listar-compromissos/listar-compromissos.component';
 import { EditarCompromissosComponent } from './views/compromissos/editar-compromissos/editar-compromissos.component';
 import { ExcluirCompromissoComponent } from './views/compromissos/excluir-compromisso/excluir-compromisso.component';
+import { contatoCompletoResolve, formContatoResolve, listarContatoResolve } from './views/contatos/resolvers/contato-resolver';
+
+
 
 const routes: Routes = [
   {
@@ -26,15 +29,18 @@ const routes: Routes = [
   },
   {
     path: 'contatos/editar/:id',
-    component: EditarContatoComponent
+    component: EditarContatoComponent,
+    resolve: { 'contato': formContatoResolve }
   },
   {
     path: 'contatos/listar',
-    component: ListarContatosComponent
+    component: ListarContatosComponent,
+    resolve: { 'contatos': listarContatoResolve }
   },
   {
     path: 'contatos/excluir/:id',
-    component: ExcluirContatoComponent
+    component: ExcluirContatoComponent,
+    resolve: { 'contato': contatoCompletoResolve }
   },
   {
     path: 'compromissos/inserir',

@@ -11,8 +11,8 @@
                     <label class="form-label">Nome:</label>
                     <input formControlName="nome" class="form-control" type="text"
                         placeholder="Digite o nome do contato" [ngClass]="{
-                      'is-valid':campoValido('nome') == true, 
-                      'is-invalid':campoValido('nome') == false}" />
+                      'is-valid':form.campoValido('nome') == true, 
+                      'is-invalid':form.campoValido('nome') == false}" />
 
                 </div>
 
@@ -20,8 +20,8 @@
                     <label class="form-label">Email:</label>
                     <input formControlName="email" class="form-control" type="text"
                         placeholder="Digite o email do contato" [ngClass]="{
-                      'is-valid':campoValido('email') == true, 
-                      'is-invalid':campoValido('email') == false}" />
+                      'is-valid':form.campoValido('email') == true, 
+                      'is-invalid':form.campoValido('email') == false}" />
 
                 </div>
 
@@ -29,8 +29,8 @@
                     <label class="form-label">Telefone:</label>
                     <input formControlName="telefone" class="form-control" type="text"
                         placeholder="Digite o telefone do contato" [ngClass]="{
-                      'is-valid':campoValido('telefone') == true, 
-                      'is-invalid':campoValido('telefone') == false}" />
+                      'is-valid':form.campoValido('telefone') == true, 
+                      'is-invalid':form.campoValido('telefone') == false}" />
 
                 </div>
 
@@ -38,8 +38,8 @@
                     <label class="form-label">Cargo:</label>
                     <input formControlName="cargo" class="form-control" type="text"
                         placeholder="Digite o cargo do contato" [ngClass]="{
-                      'is-valid':campoValido('cargo') == true, 
-                      'is-invalid':campoValido('cargo') == false}" />
+                      'is-valid':form.campoValido('cargo') == true, 
+                      'is-invalid':form.campoValido('cargo') == false}" />
 
                 </div>
 
@@ -47,8 +47,8 @@
                     <label class="form-label">Empresa:</label>
                     <input formControlName="empresa" class="form-control" type="text"
                         placeholder="Digite a empresa do contato" [ngClass]="{
-                      'is-valid':campoValido('empresa') == true, 
-                      'is-invalid':campoValido('empresa') == false}" />
+                      'is-valid':form.campoValido('empresa') == true, 
+                      'is-invalid':form.campoValido('empresa') == false}" />
 
                 </div>
 

@@ -54,7 +54,6 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
     this.observarCampoTipoLocal()
   }
 
-
   onSubmit() {
     if (this.form.valid) {
       this.compromisso = this.form.value
@@ -66,25 +65,7 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
   }
 
   private mostrarErros(): void {
-    let camposParaValidar = [
-      { campo: 'assunto', mensagem: '* Assunto é obrigatorio' },
-      { campo: 'tipoLocal', mensagem: '* Tipo local é obrigatorio' },
-      { campo: 'link', mensagem: '* Link é obrigatorio' },
-      { campo: 'local', mensagem: '* Local é obrigatorio' },
-      { campo: 'data', mensagem: '* Data Inválida' },
-      { campo: 'horaInicial', mensagem: '* Hora Inicial é obrigatorio' },
-      { campo: 'horaTermino', mensagem: '* Hora Término é obrigatorio' },
-      { campo: 'contatoId', mensagem: '* Contato é obrigatorio' },
-    ];
-
-    let erros: string[] = [];
-
-    for (let item of camposParaValidar) {
-      if (this.form.get(item.campo)?.invalid)
-        erros.push(item.mensagem);
-    }
-
-    this.toast.error(erros.join("<br/>"), 'Erros ao Enviar Formulário', { enableHtml: true });
+    this.toast.error(this.form.validate().join("<br/>"), 'Erros ao Enviar Formulário', { enableHtml: true });
   }
 
   private observarCampoTipoLocal() {
@@ -93,10 +74,12 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
       this.form.get('link')!.clearValidators();
       this.form.get('local')!.clearValidators();
 
-      if (tipoLocal === 0) {
+      if (tipoLocal === TipoLocal.REMOTO) {
         this.form.get('link')!.setValidators([Validators.required]);
-      } else if (tipoLocal === 1) {
+        this.form.patchValue({ local: null })
+      } else if (tipoLocal === TipoLocal.PRESENCIAL) {
         this.form.get('local')!.setValidators([Validators.required]);
+        this.form.patchValue({ link: null })
       }
 
       this.form.get('link')!.updateValueAndValidity();
@@ -115,12 +98,6 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
     return null;
   }
 
-  tipoLocalAlterado(local: TipoLocal) {
-    switch (local) {
-      case TipoLocal.PRESENCIAL: this.form.patchValue({ link: null }); break
-      case TipoLocal.REMOTO: this.form.patchValue({ local: null }); break
-    }
-  }
 }
 
 

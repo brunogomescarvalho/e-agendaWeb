@@ -10,19 +10,19 @@
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Assunto:</label>
                     <input formControlName="assunto" class="form-control" type="text"
-                        placeholder="Digite o assunto do compromisso" />
+                        placeholder="Digite o assunto do compromisso" [ngClass]="{
+                            'is-valid':form.campoValido('assunto') == true, 
+                            'is-invalid':form.campoValido('assunto') == false}" />
                 </div>
 
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Tipo de Compromisso:</label>
 
                     <div class="d-flex align-items-center gap-2">
-                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="0"
-                            (change)="tipoLocalAlterado(0)" />
+                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="0" />
                         Remoto
 
-                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="1"
-                            (change)="tipoLocalAlterado(1)" />
+                        <input formControlName="tipoLocal" name="tipoLocal" type="radio" [value]="1" />
                         Presencial
                     </div>
                 </div>
@@ -30,38 +30,51 @@
                 <div *ngIf="form.value.tipoLocal === 0" class="form-group mb-3 position-relative">
                     <label class="form-label">Link:</label>
                     <input formControlName="link" class="form-control" type="text"
-                        placeholder="Digite o link do compromisso" />
+                        placeholder="Digite o link do compromisso" [ngClass]="{
+                            'is-valid':form.campoValido('link') == true, 
+                            'is-invalid':form.campoValido('link') == false}" />
                 </div>
 
                 <div *ngIf="form.value.tipoLocal === 1" class="form-group mb-3 position-relative">
                     <label class="form-label">Local:</label>
                     <input formControlName="local" class="form-control" type="text"
-                        placeholder="Digite o local do compromisso" />
+                        placeholder="Digite o local do compromisso" [ngClass]="{
+                            'is-valid':form.campoValido('local') == true, 
+                            'is-invalid':form.campoValido('local') == false}" />
                 </div>
 
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Data:</label>
-                    <input formControlName="data" class="form-control" type="date" />
+                    <input formControlName="data" class="form-control" type="date" [ngClass]="{
+                        'is-valid':form.campoValido('data') == true, 
+                        'is-invalid':form.campoValido('data') == false}" />
                 </div>
 
                 <div class="form-group mb-3 position-relative row">
                     <div class="col-6">
                         <label class="form-label">Hora de Início:</label>
                         <input formControlName="horaInicio" class="form-control" type="time"
-                            placeholder="Digite o telefone do contato" />
+                            placeholder="Digite o telefone do contato" [ngClass]="{
+                                'is-valid':form.campoValido('horaInicio') == true, 
+                                'is-invalid':form.campoValido('horaInicio') == false}" />
                     </div>
 
                     <div class="col">
                         <label class="form-label">Hora de Término:</label>
                         <input formControlName="horaTermino" class="form-control" type="time"
-                            placeholder="Digite o telefone do contato" />
+                            placeholder="Digite o telefone do contato" [ngClass]="{
+                                'is-valid':form.campoValido('horaTermino') == true, 
+                                'is-invalid':form.campoValido('horaTermino') == false}" />
                     </div>
                 </div>
-
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Contato:</label>
-                    <select class="form-select w-50" formControlName="contatoId" name="categoriaId" id="">
-                        <option *ngFor="let contato of contatos" [ngValue]=contato.id>{{contato.nome}}</option>
+                    <select class="form-select w-50" formControlName="contatoId" name="contatoId" id="" [ngClass]="{
+                        'is-valid': form.campoValido('contatoId') === true,
+                        'is-invalid': form.campoValido('contatoId') === false}">
+                        <option *ngFor="let contato of contatos" [ngValue]=contato.id>
+                            {{contato.nome}}
+                        </option>
                     </select>
                 </div>
 
