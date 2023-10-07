@@ -19,8 +19,8 @@ export class ListarContatosComponent implements OnInit {
     this.route.data.pipe(map((dados) => dados['contatos']))
       .subscribe({
         error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
-        next: (dados) => this.contatos = dados,
-        complete: () => {
+        next: (dados) => {
+          this.contatos = dados
           if (this.contatos?.length == 0)
             this.toast.warning('Nenhum contato cadastrado até o momento')
         }

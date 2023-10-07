@@ -29,8 +29,8 @@ export class FormularioCompromissoComponent implements OnInit{
     this.form = this.formBuilder.group({
       assunto: new FormControl('', [Validators.required]),
       tipoLocal: new FormControl(0, [Validators.required]),
-      local: new FormControl('', []),
-      link: new FormControl('', [Validators.required]),
+      local: new FormControl(null, []),
+      link: new FormControl(null, [Validators.required]),
       data: new FormControl(new Date(), [this.validarData]),
       horaInicio: new FormControl('08:00', [Validators.required]),
       horaTermino: new FormControl('09:00', [Validators.required]),
@@ -51,12 +51,14 @@ export class FormularioCompromissoComponent implements OnInit{
   }
 
   private carregarFormulario() {
+   if(this.compromisso){
     const compromissoFormatado = {
       ...this.compromisso,
       data: this.datePipe.transform(this.compromisso.data, 'yyyy-MM-dd')
     };
 
     this.form.patchValue(compromissoFormatado);
+   }
   }
 
   private mostrarErros(): void {
@@ -82,7 +84,7 @@ export class FormularioCompromissoComponent implements OnInit{
     });
   }
 
-  validarData(control: AbstractControl): { [key: string]: any } | null {
+  validarData(control: AbstractControl): { [key: string]: boolean } | null {
     const dataSelecionada = new Date(control.value);
     const hoje = new Date();
 
