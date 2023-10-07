@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ListarContatosViewModel } from 'src/app/views/contatos/models/listar-contato.view-model';
 import { FormCompromissoViewModel } from '../../models/form-compromisso.view-model';
@@ -11,7 +11,7 @@ import { TipoLocal } from '../../models/TipoLocal';
   templateUrl: './formulario-compromisso.component.html',
   styleUrls: ['./formulario-compromisso.component.css']
 })
-export class FormularioCompromissoComponent implements OnInit, OnChanges {
+export class FormularioCompromissoComponent implements OnInit{
 
   @Output() onEnviarCompromisso = new EventEmitter<FormCompromissoViewModel>()
 
@@ -25,20 +25,6 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
 
   constructor(private formBuilder: FormBuilder, private toast: ToastrService, private datePipe: DatePipe) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.form && changes['compromisso']) {
-
-      const compromissoFormatado = {
-        ...this.compromisso,
-        data: this.datePipe.transform(this.compromisso.data, 'yyyy-MM-dd')
-      };
-
-      this.form.patchValue(compromissoFormatado);
-    }
-
-  }
-
-
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       assunto: new FormControl('', [Validators.required]),
@@ -50,8 +36,8 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
       horaTermino: new FormControl('09:00', [Validators.required]),
       contatoId: new FormControl('', [Validators.required])
     })
-
-    this.observarCampoTipoLocal()
+    this.carregarFormulario();
+    this.observarCampoTipoLocal();
   }
 
   onSubmit() {
@@ -62,6 +48,15 @@ export class FormularioCompromissoComponent implements OnInit, OnChanges {
     else {
       this.mostrarErros()
     }
+  }
+
+  private carregarFormulario() {
+    const compromissoFormatado = {
+      ...this.compromisso,
+      data: this.datePipe.transform(this.compromisso.data, 'yyyy-MM-dd')
+    };
+
+    this.form.patchValue(compromissoFormatado);
   }
 
   private mostrarErros(): void {

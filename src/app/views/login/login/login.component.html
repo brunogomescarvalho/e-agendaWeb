@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center mt-5">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form ">
+
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input formControlName="email" type="text" class="form-control" id="staticEmail" [ngClass]="{
+                    'is-valid':form.campoValido('email') == true, 
+                    'is-invalid':form.campoValido('email') == false}" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Senha</label>
+            <div class="col-sm-10">
+                <input type="password" formControlName="senha" class="form-control" id="inputPassword" [ngClass]="{
+                    'is-valid':form.campoValido('senha') == true, 
+                    'is-invalid':form.campoValido('senha') == false}" />
+            </div>
+        </div>
+        <div class="mt-4  col-sm-10">
+            <button class="btn btn-success mx-3" type="submit">Logar</button>
+            <button class="btn btn-primary" type="button">Cadastrar-se</button>
+        </div>
+
+    </form>
+</div>

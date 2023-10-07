@@ -10,7 +10,9 @@ import { ListarCompromissosComponent } from './views/compromissos/listar-comprom
 import { EditarCompromissosComponent } from './views/compromissos/editar-compromissos/editar-compromissos.component';
 import { ExcluirCompromissoComponent } from './views/compromissos/excluir-compromisso/excluir-compromisso.component';
 import { contatoCompletoResolve, formContatoResolve, listarContatoResolve } from './views/contatos/resolvers/contato-resolver';
-
+import { LoginComponent } from './views/login/login/login.component';
+import { usuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
+import { compromissoCompletoResolve, formCompromissoResolve, listarCompromissoResolve } from './views/compromissos/resolvers/compromisso-resolver';
 
 
 const routes: Routes = [
@@ -20,43 +22,60 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [usuarioAutenticadoGuard]
   },
   {
     path: 'contatos/inserir',
-    component: InserirContatosComponent
+    component: InserirContatosComponent,
+    canActivate: [usuarioAutenticadoGuard]
   },
   {
     path: 'contatos/editar/:id',
     component: EditarContatoComponent,
-    resolve: { 'contato': formContatoResolve }
+    resolve: { 'contato': formContatoResolve },
+    canActivate: [usuarioAutenticadoGuard]
   },
   {
     path: 'contatos/listar',
     component: ListarContatosComponent,
-    resolve: { 'contatos': listarContatoResolve }
+    resolve: { 'contatos': listarContatoResolve },
+    canActivate: [usuarioAutenticadoGuard]
   },
   {
     path: 'contatos/excluir/:id',
     component: ExcluirContatoComponent,
-    resolve: { 'contato': contatoCompletoResolve }
+    resolve: { 'contato': contatoCompletoResolve },
+    canActivate: [usuarioAutenticadoGuard]
   },
   {
     path: 'compromissos/inserir',
-    component: InserirCompromissoComponent
+    component: InserirCompromissoComponent,
+    canActivate: [usuarioAutenticadoGuard],
+    resolve: { 'contatos': listarContatoResolve }
   },
   {
     path: 'compromissos/listar',
-    component: ListarCompromissosComponent
+    component: ListarCompromissosComponent,
+    canActivate: [usuarioAutenticadoGuard],
+    resolve: { 'compromissos': listarCompromissoResolve }
   },
   {
     path: 'compromissos/editar/:id',
-    component: EditarCompromissosComponent
+    component: EditarCompromissosComponent,
+    resolve: { 'compromisso': formCompromissoResolve, 'contatos': listarContatoResolve },
+    canActivate: [usuarioAutenticadoGuard]
   },
   {
     path: 'compromissos/excluir/:id',
-    component: ExcluirCompromissoComponent
+    component: ExcluirCompromissoComponent,
+    canActivate: [usuarioAutenticadoGuard],
+    resolve: { 'compromisso': compromissoCompletoResolve, }
   }
 ];
 
