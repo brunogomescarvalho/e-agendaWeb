@@ -19,8 +19,13 @@ export class LoginService {
             this.salvarToken(res)
         }),
         catchError((err: HttpErrorResponse) =>
-          throwError(() => new Error(err.message))
+          this.processarErro(err)
         ))
+  }
+  private processarErro(err: HttpErrorResponse): any {
+    if (err.status == 400)
+      return throwError(() => new Error("Verifique o e-mail e a senha ou efetue seu cadastro"))
+    return throwError(() => new Error('Ocorreu um erro ao efetuar sua solicitação, tente novamente mais tarde'))
   }
 
   public tokenValido(): boolean {

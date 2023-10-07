@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       let usuario = new LoginUsuarioViewModel(this.form.value.email, this.form.value.senha)
       this.service.autenticar(usuario)
         .subscribe({
-          error: (Error) => this.toast.error(Error),
+          error: (erro: Error) => this.toast.error(erro.message, 'Usuário não encontrado'),
           next: () => this.router.navigate(['/dashboard'])
         })
     }

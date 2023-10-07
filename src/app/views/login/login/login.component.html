@@ -1,5 +1,15 @@
-<div class="container d-flex justify-content-center mt-5">
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form ">
+<div class="row mx-4 mt-4 justify-content-center">
+    <div class="col-sm-10 col-md-6 col-lg-4">
+        <h2 class="text-primary">Login</h2>
+        <P>Efetue login ou cadastre-se para acessar o e-Agenda</P>
+        <hr>
+    </div>
+
+</div>
+
+<div class="container d-flex justify-content-center mt-4">
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form">
 
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
