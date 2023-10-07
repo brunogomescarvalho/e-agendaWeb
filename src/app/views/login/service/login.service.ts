@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { catchError, tap, throwError } from 'rxjs';
 import { LoginUsuarioViewModel } from '../models/login.view-model';
@@ -9,15 +9,18 @@ export class LoginService {
 
   private endpoint: string = 'https://e-agenda-web-api.onrender.com/api/conta/autenticar'
 
-  public onInformarLogin = new EventEmitter<boolean>()
-
   constructor(private http: HttpClient) { }
 
   public autenticar(usuario: LoginUsuarioViewModel) {
     return this.http.post(this.endpoint, usuario)
-      .pipe(tap((res: any) => { if (res.sucesso == true) this.salvarToken(res) }),
+      .pipe(
+        tap((res: any) => {
+          if (res.sucesso == true)
+            this.salvarToken(res)
+        }),
         catchError((err: HttpErrorResponse) =>
-          throwError(() => new Error(err.message))))
+          throwError(() => new Error(err.message))
+        ))
   }
 
   public tokenValido(): boolean {
@@ -31,15 +34,14 @@ export class LoginService {
 
   }
 
-  private salvarToken(aut: any): void {
+  private salvarToken(res: any): void {
     const token = {
-      chave: aut.dados.chave,
-      usuario: aut.dados.usuarioToken,
-      dataExpiracao: aut.dados.dataExpiracao,
+      chave: res.dados.chave,
+      usuario: res.dados.usuarioToken,
+      dataExpiracao: res.dados.dataExpiracao,
     }
 
     localStorage.setItem('tokenEAgenda', JSON.stringify(token))
-    this.onInformarLogin.emit(true)
   }
 
   public obterUsuarioLogado(): string {

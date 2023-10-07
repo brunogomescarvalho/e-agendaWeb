@@ -31,7 +31,7 @@ export class FormularioCompromissoComponent implements OnInit{
       tipoLocal: new FormControl(0, [Validators.required]),
       local: new FormControl(null, []),
       link: new FormControl(null, [Validators.required]),
-      data: new FormControl(new Date(), [this.validarData]),
+      data: new FormControl(null, [this.validarData]),
       horaInicio: new FormControl('08:00', [Validators.required]),
       horaTermino: new FormControl('09:00', [Validators.required]),
       contatoId: new FormControl('', [Validators.required])

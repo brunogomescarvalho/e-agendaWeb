@@ -9,17 +9,30 @@ declare module '@angular/forms' {
 
 FormGroup.prototype.validate = function () {
     let erros: string[] = []
-    for (let item of Object.keys(this.controls)) {
 
-        if (this.get(item)?.invalid) {
-            this.get(item)?.errors!['email'] ?
-                erros.push('* E-mail informado em formato inválido') :
-                erros.push(`* ${item} é obrigatório`)
-            this.get(item)?.markAsTouched()
+    for (let item of Object.keys(this.controls)) {
+        const control = this.get(item)
+
+        if (control?.invalid) {
+            let msg!: string
+
+            if (control.errors!['dataInvalida'])
+                msg = '* A data deve ser superior a data de hoje';
+
+            else if (control.errors!['email'])
+                msg = '* E-mail informado em formato inválido'
+
+            else
+                msg = `* ${item} é obrigatório`
+
+            erros.push(msg)
+            control?.markAsTouched()
         }
     }
     return erros
 }
+
+
 
 FormGroup.prototype.campoValido = function (campo: string): boolean | undefined {
     let campoValido = undefined;
