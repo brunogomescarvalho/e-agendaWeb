@@ -15,7 +15,7 @@ export class ListarCompromissosComponent implements OnInit {
   compromissos!: ListaCompromissosViewModel[]
 
 
-  constructor(private route: ActivatedRoute, private service: CompromissoService, private router: Router, private toast: ToastrService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.route.data.pipe(map((dados) => dados['compromissos']))

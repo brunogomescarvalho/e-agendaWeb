@@ -28,7 +28,7 @@ export class ContatoService {
     public inserir(contato: FormContatosViewModel) {
         return this.httpClient
             .post<FormContatosViewModel>(this.endpoint, contato, this.obterHeadersAutorizacao())
-            .pipe(catchError((erro: HttpErrorResponse) => this.processarErro(erro)));
+            .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
     }
 
     public selecionarTodos() {
@@ -36,7 +36,7 @@ export class ContatoService {
             .get<any>(this.endpoint, this.obterHeadersAutorizacao())
             .pipe(
                 map((res) => res.dados),
-                catchError((erro: HttpErrorResponse) => this.processarErro(erro)))
+                catchError((erro: HttpErrorResponse) => erro.processarErro()))
     }
 
     public selecionarPorId(id: string): Observable<FormContatosViewModel> {
@@ -44,7 +44,7 @@ export class ContatoService {
             .get<any>(`${this.endpoint}/${id}`, this.obterHeadersAutorizacao())
             .pipe(
                 map((res) => res.dados),
-                catchError((erro: HttpErrorResponse) => this.processarErro(erro)))
+                catchError((erro: HttpErrorResponse) => erro.processarErro()))
     }
 
     public selecionarContatoCompletoPorId(id: string): Observable<VisualizarContatoViewModel> {
@@ -52,40 +52,21 @@ export class ContatoService {
             .get<any>(this.endpoint + '/visualizacao-completa/' + id, this.obterHeadersAutorizacao())
             .pipe(
                 map((res) => res.dados),
-                catchError((erro: HttpErrorResponse) => this.processarErro(erro)))
+                catchError((erro: HttpErrorResponse) => erro.processarErro()))
     }
 
     public editar(id: string, contato: FormContatosViewModel) {
         return this.httpClient
             .put<any>(`${this.endpoint}/${id}`, contato, this.obterHeadersAutorizacao())
-            .pipe(catchError((erro: HttpErrorResponse) => this.processarErro(erro)));
+            .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
     }
 
     public excluir(id: string) {
         return this.httpClient
             .delete<any>(`${this.endpoint}/${id}`, this.obterHeadersAutorizacao())
-            .pipe(catchError((erro: HttpErrorResponse) => this.processarErro(erro)));
+            .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
     }
 
-    private processarErro(erro: HttpErrorResponse) {
-        let messagemErro!: string;
-
-        if (!erro) {
-            return throwError(() => new Error('Erro inesperado.'));
-        }
-
-        switch (erro.status) {
-            case 0:
-                messagemErro = 'Ocorreu um erro ao efetuar a requisição.';
-                break;
-            case 401:
-                messagemErro = 'Usuário sem permissão. Efetue login e tente novamente.';
-                break;
-            default:
-                messagemErro = erro.error.erros[0]
-        }
-
-        return throwError(() => new Error(messagemErro));
-    }
+   
 
 }

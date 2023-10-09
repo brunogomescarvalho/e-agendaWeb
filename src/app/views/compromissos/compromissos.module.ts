@@ -5,12 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InserirCompromissoComponent } from './inserir-compromisso/inserir-compromisso.component';
 import { ContatoService } from '../contatos/service/contato.service';
 import { ListarCompromissosComponent } from './listar-compromissos/listar-compromissos.component';
-import { RouterModule } from '@angular/router';
 import { CompromissoService } from './service/compromisso.service';
 import { CardCompromissoComponent } from './componentes/card-compromisso/card-compromisso.component';
 import { EditarCompromissosComponent } from './editar-compromissos/editar-compromissos.component';
 import { ExcluirCompromissoComponent } from './excluir-compromisso/excluir-compromisso.component';
-import 'src/app/extensions/form-group.extension';
+import { ContatosModule } from '../contatos/contatos.module';
+import { CompromissosRouterModule } from './router-module/compromissos.router.module';
 
 
 
@@ -26,12 +26,13 @@ import 'src/app/extensions/form-group.extension';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    CompromissosRouterModule,
+    ContatosModule
   ],
   providers: [
     ContatoService,
     CompromissoService,
-    DatePipe 
+    DatePipe
   ]
 })
 export class CompromissosModule { }

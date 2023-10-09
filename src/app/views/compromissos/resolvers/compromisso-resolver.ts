@@ -10,7 +10,7 @@ export const formCompromissoResolve: ResolveFn<[FormCompromissoViewModel]> =
     };
 
 export const listarCompromissoResolve: ResolveFn<[ListaCompromissosViewModel]> =
-    (route: ActivatedRouteSnapshot) => {
+    () => {
         return inject(CompromissoService).selecionarTodos()
     };
 
