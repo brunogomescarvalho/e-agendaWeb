@@ -6,7 +6,7 @@
             </div>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
-                <!-- {{form.value|json}} -->
+                {{form.value|json}}
                 <div class="form-group mb-3 position-relative">
                     <label class="form-label">Descrição:</label>
                     <input formControlName="descricao" class="form-control" type="text"

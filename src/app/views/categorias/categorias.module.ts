@@ -8,6 +8,7 @@ import { FormularioCategoriaComponent } from './componentes/formulario-categoria
 import { ReactiveFormsModule } from '@angular/forms';
 import { InserirCategoriaComponent } from './inserir-categoria/inserir-categoria.component';
 import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
+import { ExcluirCategoriaComponent } from './excluir-categoria/excluir-categoria.component';
 
 
 
@@ -17,7 +18,8 @@ import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.co
     ListarCategoriasComponent,
     FormularioCategoriaComponent,
     InserirCategoriaComponent,
-    EditarCategoriaComponent
+    EditarCategoriaComponent,
+    ExcluirCategoriaComponent
   ],
   imports: [
     CommonModule,

@@ -18,7 +18,7 @@ export class InserirCompromissoComponent implements OnInit {
 
   contatos!: ListarContatosViewModel[]
 
-  constructor(private route: ActivatedRoute, private contatoService: ContatoService, private compromissoService: CompromissoService, private router: Router, private toast: ToastrService) { }
+  constructor(private route: ActivatedRoute, private compromissoService: CompromissoService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.obterContatos();
@@ -28,12 +28,11 @@ export class InserirCompromissoComponent implements OnInit {
     this.route.data.pipe(map((dados => dados['contatos'])))
       .subscribe({
         error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
-        next: (contatos) => this.contatos = contatos,
-        complete: () => {
-          if (this.contatos.length == 0)
-            this.toast.warning('Nenhum contato cadastrado até o momento!');
-        }
-      });
+        next: (contatos) => this.contatos = contatos
+      }).add(() => {
+        if (this.contatos.length == 0)
+          this.toast.warning('Nenhum contato cadastrado até o momento!');
+      })
   }
 
   inserir(compromisso: FormCompromissoViewModel) {

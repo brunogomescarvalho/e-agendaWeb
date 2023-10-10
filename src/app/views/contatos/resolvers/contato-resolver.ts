@@ -3,6 +3,7 @@ import { ResolveFn, ActivatedRouteSnapshot } from "@angular/router";
 import { FormContatosViewModel } from "../models/form-contato-view-model";
 import { ContatoService } from "../service/contato.service";
 import { ListarContatosViewModel } from "../models/listar-contato.view-model";
+import { StatusFavorito } from "../models/status-favorito.enum";
 
 export const formContatoResolve: ResolveFn<FormContatosViewModel> =
     (route: ActivatedRouteSnapshot) => {
@@ -10,7 +11,7 @@ export const formContatoResolve: ResolveFn<FormContatosViewModel> =
     };
 
 export const listarContatoResolve: ResolveFn<ListarContatosViewModel> =
-    () => { return inject(ContatoService).selecionarTodos() }
+    () => { return inject(ContatoService).selecionarTodos(StatusFavorito.TODOS) }
 
 export const contatoCompletoResolve: ResolveFn<FormContatosViewModel> =
     (route: ActivatedRouteSnapshot) => {

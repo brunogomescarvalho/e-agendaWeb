@@ -24,13 +24,13 @@ export class DespesasService {
     return this.httpService.get<any>(`${this.endpoint}/${id}`)
       .pipe(
         map(res => res.dados),
-        catchError((err: HttpErrorResponse) => err.processarErro())
+        catchError((erro: HttpErrorResponse) => erro.processarErro())
       )
   }
 
   public editar(id: string, despesa: FormDespesaViewModel) {
     return this.httpService
-        .put<any>(`${this.endpoint}/${id}`, despesa)
+        .put<FormDespesaViewModel>(`${this.endpoint}/${id}`, despesa)
         .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
 }
 }

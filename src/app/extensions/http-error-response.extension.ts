@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
+
 declare module '@angular/common/http' {
     interface HttpErrorResponse {
         processarErro(): Observable<any>

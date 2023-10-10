@@ -10,3 +10,7 @@ export const listarCategoriasResolve: ResolveFn<[ListarCategoriasViewModel]> =
 export const buscarCategoriaPorIdResolve: ResolveFn<[FormCategoriaViewModel]> = (route: ActivatedRouteSnapshot) => {
     return inject(CategoriaService).selecionarPorId(route.params['id'])
 }
+
+export const buscarCategoriaCompletaPorIdResolve: ResolveFn<[FormCategoriaViewModel]> = (route: ActivatedRouteSnapshot) => {
+    return inject(CategoriaService).selecionarCategoriaCompletaPorId(route.params['id'])
+}
