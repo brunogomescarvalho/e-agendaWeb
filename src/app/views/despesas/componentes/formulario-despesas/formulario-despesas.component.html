@@ -1,0 +1,65 @@
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+            <div class="text-md-start">
+                <h1 class="fw-bold text-primary">{{titulo}}</h1>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
+                <!-- {{form.value|json}} -->
+                <div class="form-group mb-3 position-relative">
+                    <label class="form-label">Descrição:</label>
+                    <input formControlName="descricao" class="form-control" type="text"
+                        placeholder="Digite a descrição da despesa" [ngClass]="{
+                            'is-valid':form.campoValido('descricao') == true, 
+                            'is-invalid':form.campoValido('descricao') == false}" />
+                </div>
+                <div class="form-group mb-3 position-relative">
+                    <label class="form-label">Data:</label>
+                    <input formControlName="data" class="form-control" type="date" [ngClass]="{
+                            'is-valid':form.campoValido('data') == true, 
+                            'is-invalid':form.campoValido('data') == false}" />
+                </div>
+
+                <div class="form-group mb-3 position-relative">
+                    <label class="form-label">Forma de pagamento:</label>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <input formControlName="formaPagamento" name="formaPagamento" type="radio" [value]="0" />
+                        PIX
+
+                        <input formControlName="formaPagamento" name="formaPagamento" type="radio" [value]="1" />
+                        Á Vista
+
+                        <input formControlName="formaPagamento" name="formaPagamento" type="radio" [value]="2" />
+                        Cartão de Crédito
+                    </div>
+                </div>
+                <div class="form-group mb-3 position-relative w-50">
+                    <label class="form-label">Valor:</label>
+                    <input class="form-control" formControlName="valor" type="number" min="0" [ngClass]="{
+                        'is-valid':form.campoValido('valor') == true, 
+                        'is-invalid':form.campoValido('valor') == false}" />
+                </div>
+
+                <div class="form-group mb-3 position-relative w-50">
+                    <label for="categoria">Categorias:</label>
+                    <ng-select [items]="categorias" [multiple]="true" bindLabel="titulo" labelForId="categoria" bindValue="id"
+                        formControlName="categoriasSelecionadas">
+                    </ng-select>
+                </div>
+
+                <div class="card-footer g-grid d-flex gap-1 mt-5">
+                    <button data-cy="btnGravar" type="submit" class="btn btn-primary px-5">
+                        <i class="bi bi-save me-2"></i>
+                        Gravar
+                    </button>
+                    <button routerLink="/categorias/listar" type="button" class="btn btn-outline-primary px-5">
+                        <i class="pi pi-arrow-left me-2"></i>
+                        Voltar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

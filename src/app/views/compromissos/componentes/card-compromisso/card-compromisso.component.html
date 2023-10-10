@@ -4,10 +4,13 @@
         <h6 class="card-subtitle mb-2 text-body-secondary"><small>Contato: </small>{{compromisso.nomeContato}}</h6>
     </div>
     <div class="card-body">
-        <p class="card-text">Data: {{compromisso.data}}</p>
-        <p class="card-text">Hora Início: {{compromisso.horaInicio}}</p>
-        <p class="card-text">Hora Final: {{compromisso.horaTermino}}</p>
+        <p class="card-text"><strong>Data:</strong> <span style="float: right;"> {{compromisso.data}}</span></p>
+        <p class="card-text"><strong>Hora Início:</strong> <span style="float: right;">
+                {{compromisso.horaInicio}}</span></p>
+        <p class="card-text"><strong>Hora Final:</strong> <span style="float: right;">{{compromisso.horaTermino}}</span>
+        </p>
     </div>
+    <hr>
     <div class="d-flex justify-content-center gap-3 m-2">
         <!-- <button class="btn btn-outline-{{tema}}" aria-label="Arquivar" placement="bottom">
             <i class='bi bi-download'></i>

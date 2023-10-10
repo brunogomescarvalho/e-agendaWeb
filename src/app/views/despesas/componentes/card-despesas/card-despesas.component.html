@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header text-bg-{{tema}}">
+        <h5 class="card-title">{{despesa.descricao}}</h5>
+
+    </div>
+    <div class="card-body">
+        <p class="card-text"><strong>Valor:</strong> <span style="float: right;">{{despesa.valor | currency:'R$'}}</span></p>
+        <p class="card-text"><strong>Data: </strong> <span style="float: right;">{{despesa.data | date:'dd/MM/yyyy'}}</span></p>
+        <p class="card-text"><strong>Forma de Pagamento: </strong> <span style="float: right;">{{despesa.formaPagamento}}</span></p>
+    </div>
+    
+    <hr>
+    <div class="d-flex justify-content-center gap-3 m-2">
+        <button (click)="editar(despesa)" class="btn btn-outline-{{tema}}" aria-label="Editar" ngbTooltip="Editar"
+            placement="bottom">
+            <i class="bi bi-pen"></i>
+        </button>
+        <button (click)="excluir(despesa)" class="btn btn-outline-{{tema}}" aria-label="Editar" ngbTooltip="Excluir"
+            placement="bottom">
+            <i class="bi bi-trash"></i>
+        </button>
+    </div>
+</div>

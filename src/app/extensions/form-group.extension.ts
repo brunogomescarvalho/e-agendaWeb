@@ -22,6 +22,8 @@ FormGroup.prototype.validate = function () {
             else if (control.errors!['email'])
                 msg = '* E-mail informado em formato inválido'
 
+            else if (control.errors!['categoriaDespesaNaoSelecionada'])
+                msg = '* É necessário selecionar ao menos uma categoria'
             else
                 msg = `* ${item} é obrigatório`
 
