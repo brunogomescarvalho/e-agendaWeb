@@ -8,7 +8,7 @@ import { ListaCompromissosViewModel } from '../../models/listar-compromissos.vie
 })
 export class CardCompromissoComponent {
 
-  tema = 'info'
+  tema = 'primary'
 
   @Input({ required: true }) compromisso!: ListaCompromissosViewModel
 

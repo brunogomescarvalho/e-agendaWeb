@@ -7,7 +7,7 @@ import { ListarDespesasViewModel } from '../../models/listar-despesas.view-model
   styleUrls: ['./card-despesas.component.css']
 })
 export class CardDespesasComponent {
-  tema = 'info'
+  tema = 'primary'
 
   @Input({ required: true }) despesa!: ListarDespesasViewModel
 

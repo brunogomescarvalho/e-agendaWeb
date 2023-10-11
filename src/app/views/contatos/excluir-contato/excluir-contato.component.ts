@@ -29,7 +29,10 @@ export class ExcluirContatoComponent implements OnInit {
     this.service.excluir(this.contato!.id)
       .subscribe({
         error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
-        next: () => this.router.navigate(['contatos/listar'])
+        next: () => {
+          this.toast.success('Contato excluído com sucesso', 'Sucesso')
+          this.router.navigate(['contatos/listar'])
+        }
       })
   }
 

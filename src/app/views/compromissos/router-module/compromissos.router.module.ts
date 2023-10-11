@@ -7,6 +7,7 @@ import { ExcluirCompromissoComponent } from "../excluir-compromisso/excluir-comp
 import { InserirCompromissoComponent } from "../inserir-compromisso/inserir-compromisso.component";
 import { ListarCompromissosComponent } from "../listar-compromissos/listar-compromissos.component";
 import { listarCompromissoResolve, formCompromissoResolve, compromissoCompletoResolve } from "../resolvers/compromisso-resolver";
+import { DetalhesCompromissoComponent } from "../detalhes-compromisso/detalhes-compromisso.component";
 
 const routes: Routes = [
 
@@ -38,7 +39,14 @@ const routes: Routes = [
         component: ExcluirCompromissoComponent,
         canActivate: [usuarioAutenticadoGuard],
         resolve: { 'compromisso': compromissoCompletoResolve, }
-    }]
+    },
+    {
+        path: 'detalhes/:id',
+        component: DetalhesCompromissoComponent,
+        canActivate: [usuarioAutenticadoGuard],
+        resolve: { 'compromisso': compromissoCompletoResolve, }
+    }
+]
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

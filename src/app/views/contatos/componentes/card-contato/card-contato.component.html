@@ -8,9 +8,15 @@
             <p class="card-text">Empresa: {{contato.empresa | uppercase}}</p>
             <p class="card-text">Cargo: {{contato.cargo}}</p>
         </div>
+        <hr class="m-0">
         <div class="d-flex justify-content-center gap-3 m-2">
-            <button (click)="favoritar(contato)" class="btn btn-outline-{{tema}}" aria-label="Favorito" placement="bottom">
-                <i class='bi bi-download'></i>
+            <button (click)="detalhes(contato)" class="btn btn-outline-{{tema}}" aria-label="Detalhes" ngbTooltip="Detalhes"
+            placement="bottom">
+            <i class="bi bi-eye"></i>
+        </button>
+            <button (click)="favoritar(contato)" class="btn btn-outline-{{tema}}" aria-label="Favorito"
+                placement="bottom"ngbTooltip="{{ favorito ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos' }}">
+                <i [ngClass]="{'bi bi-heart': !favorito, 'bi bi-heart-fill': favorito}"></i>
             </button>
             <button (click)="editar(contato)" class="btn btn-outline-{{tema}}" aria-label="Editar" ngbTooltip="Editar"
                 placement="bottom">

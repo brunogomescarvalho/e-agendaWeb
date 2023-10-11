@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row">
+        <!-- Conteúdo principal -->
+        <div class="col-12 col-md-10 col-lg-9 mx-auto my-5">
+            <!-- Titulo -->
+            <div class="text-md-start">
+                <div class="text-md-start">
+                    <h1 class="fw-bold text-primary">Detalhes Contato</h1>
+                    <hr />
+                </div>
+
+                <h2 class="fs-5">
+                    Exibindo detalhes de:
+                    <span class="fw-bolder fst-italic">"{{contato?.nome}}" </span>?
+                </h2>
+            </div>
+
+            <dl class="form-group mt-4 row">
+
+                <dt class="col-md-4">
+                    <label class="control-label">Email:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{contato?.email}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Telefone:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{contato?.telefone}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Cargo:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{contato?.cargo}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Empresa:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{contato?.empresa}}
+                </dd>
+                <!-- compromissos -->
+                <div *ngIf='contato?.compromissos!.length != 0 '>
+                    <hr>
+
+                    <span class="text-primary fs-3"> Compromissos</span>
+                    <div class="form-group mt-2 row" *ngFor="let compromisso of contato?.compromissos index as i">
+
+                        <dt class="col-md-4">
+                            <label class="control-label fs-4">#{{i+1}}</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            <button (click)="detalhesCompromisso(compromisso)" class="btn btn-outline-primary" aria-label="Detalhes" ngbTooltip="Detalhes"
+                                placement="bottom"> <i class="bi bi-eye"></i></button>
+                        </dd>
+
+                        <dt class="col-md-4">
+                            <label class="control-label">Assunto:</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            {{compromisso?.assunto}}
+                        </dd>
+
+                        <dt class="col-md-4">
+                            <label class="control-label">Data:</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            {{compromisso?.data|date:'dd/MM/yyyy'}}
+                        </dd>
+
+                        <dt class="col-md-4">
+                            <label class="control-label">Hora Inicio:</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            {{compromisso?.horaInicio}}
+                        </dd>
+
+                        <dt class="col-md-4">
+                            <label class="control-label">Hora Término:</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            {{compromisso?.horaTermino}}
+                        </dd>
+                        <hr>
+                    </div>
+
+                </div>
+            </dl>
+
+            <div class="card-footer g-grid d-flex gap-1 mt-5">
+                <button (click)="voltar()" type="button" class="btn btn-outline-primary px-5">
+                    <i class="bi bi-arrow-return-left me-2"></i>
+                    Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

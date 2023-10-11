@@ -9,7 +9,7 @@ import { ListarCategoriasViewModel } from '../../models/listar-categorias-view-m
 })
 export class CategoriaCardComponent {
 
-  tema = 'info'
+  tema = 'primary'
 
   @Input({ required: true }) categoria!: ListarCategoriasViewModel
 

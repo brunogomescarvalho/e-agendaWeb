@@ -34,7 +34,7 @@
       <div class="mt-5 row justify-content-center">
         <div class="col-lg-4 col-md-6 col-sm-10" *ngFor="let contato of contatos">
           <app-card-contato (onEditarContato)="editar($event)" (onExcluirContato)="excluir($event)"
-            (onFavoritarContato)="favoritar($event)" class="col-4" [contato]="contato"></app-card-contato>
+            (onFavoritarContato)="alterarFavorito($event)" (onDetalhesContato)="detalhes($event)" class="col-4" [contato]="contato"></app-card-contato>
         </div>
       </div>
 

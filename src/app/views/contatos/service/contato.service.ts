@@ -69,7 +69,7 @@ export class ContatoService {
             .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
     }
 
-    public favoritar(id: string, contato: ListarContatosViewModel) {
+    public alterarFavorito(id: string, contato: ListarContatosViewModel) {
         return this.httpClient
             .put<any>(`${this.endpoint}/favoritos/${id}`, contato)
             .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));

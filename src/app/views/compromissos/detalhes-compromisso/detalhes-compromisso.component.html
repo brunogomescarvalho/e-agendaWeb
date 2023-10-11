@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row">
+        <!-- Conteúdo principal -->
+        <div class="col-12 col-md-10 col-lg-9 mx-auto my-5">
+            <!-- Titulo -->
+            <div class="text-md-start">
+                <div class="text-md-start">
+                    <h1 class="fw-bold text-primary">Detalhes Compromisso</h1>
+                    <hr />
+                </div>
+
+                <h2 class="fs-5">
+                    Assunto:
+                    <span class="fw-bolder fst-italic">{{compromisso?.assunto}} </span>
+                </h2>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Tipo de Compromisso:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.tipoLocal == 0? 'Remoto':'Presencial'}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label"> {{compromisso?.tipoLocal == 0? 'Link':'Local'}}</label>
+                </dt>
+                <dd *ngIf='compromisso?.tipoLocal == 0' class="col-md-8">
+                    <a class="link-opacity-0" href='//{{compromisso?.link}}' target="_blank"> {{ compromisso?.link}}</a>
+                </dd>
+                <dd *ngIf='compromisso?.tipoLocal == 1' class="col-md-8">
+                    <span>{{ compromisso?.local}}</span>
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Data:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.data|date:'dd/MM/yyyy'}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Hora Inicio:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.horaInicio}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Hora Término:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.horaTermino}}
+                </dd>
+            </div>
+            <hr>
+            <dl class="form-group mt-4 row">
+                <dt class="col-md-4">
+                    <label class="control-label fs-4 text-primary"> Contato</label>
+                </dt>
+
+                <dd class="col-md-8">
+                    <button (click)="detalhesContato(compromisso?.contato!)" class="btn btn-outline-primary"
+                        aria-label="Detalhes" ngbTooltip="Detalhes" placement="bottom"> <i
+                            class="bi bi-eye"></i></button>
+                </dd>
+                <dt class="col-md-4">
+                    <label class="control-label">Nome:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.contato?.nome}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Telefone:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.contato?.telefone}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Cargo:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.contato?.cargo}}
+                </dd>
+
+                <dt class="col-md-4">
+                    <label class="control-label">Empresa:</label>
+                </dt>
+                <dd class="col-md-8">
+                    {{compromisso?.contato?.empresa}}
+                </dd>
+
+            </dl>
+
+        </div>
+
+    </div>
+
+    <div class="card-footer g-grid d-flex gap-1 mt-5">
+        <button (click)="voltar()" type="button" class="btn btn-outline-primary px-5">
+            <i class="bi bi-arrow-return-left me-2"></i>
+            Voltar
+        </button>
+    </div>
+</div>

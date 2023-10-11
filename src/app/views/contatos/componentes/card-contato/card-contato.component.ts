@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ListarContatosViewModel } from '../../models/listar-contato.view-model';
 
 @Component({
@@ -9,15 +9,18 @@ import { ListarContatosViewModel } from '../../models/listar-contato.view-model'
 export class CardContatoComponent implements OnInit {
 
   ngOnInit(): void {
-    this.tema = this.contato.favorito ? 'primary' : 'info'
+    this.favorito = this.contato.favorito
   }
-  tema: string = 'info' || 'primary'
+  tema: string = 'primary'
+  favorito: boolean = true
 
   @Output() onExcluirContato = new EventEmitter<ListarContatosViewModel>()
 
   @Output() onEditarContato = new EventEmitter<ListarContatosViewModel>()
 
   @Output() onFavoritarContato = new EventEmitter<ListarContatosViewModel>()
+
+  @Output() onDetalhesContato = new EventEmitter<ListarContatosViewModel>()
 
   @Input() contato!: ListarContatosViewModel
 
@@ -30,8 +33,12 @@ export class CardContatoComponent implements OnInit {
   }
 
   favoritar(contato: ListarContatosViewModel) {
-    this.tema = !this.contato.favorito ? 'primary' : 'info'
+    this.favorito = !this.contato.favorito
     this.onFavoritarContato.emit(contato)
+  }
+
+  detalhes(contato: ListarContatosViewModel) {
+    this.onDetalhesContato.emit(contato)
   }
 
 

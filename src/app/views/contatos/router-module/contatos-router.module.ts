@@ -7,6 +7,7 @@ import { ExcluirContatoComponent } from "../excluir-contato/excluir-contato.comp
 import { formContatoResolve, listarContatoResolve, contatoCompletoResolve } from "../resolvers/contato-resolver";
 import { InserirContatosComponent } from "../inserir-contatos/inserir-contatos.component";
 import { ListarContatosComponent } from "../listar-contatos/listar-contatos.component";
+import { DetalhesContatoComponent } from "../detalhes-contato/detalhes-contato.component";
 
 const routes: Routes = [
     {
@@ -37,6 +38,13 @@ const routes: Routes = [
         resolve: { 'contato': contatoCompletoResolve },
         canActivate: [usuarioAutenticadoGuard]
     },
+    {
+        path:'detalhes/:id',
+        component:DetalhesContatoComponent,
+        resolve: { 'contato': contatoCompletoResolve },
+        canActivate: [usuarioAutenticadoGuard]
+
+    }
 ]
 
 @NgModule({

@@ -23,25 +23,20 @@ export class FormularioContatoComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       telefone: new FormControl('', [Validators.required]),
       cargo: new FormControl('', [Validators.required]),
-      empresa: new FormControl('', [Validators.required])
+      empresa: new FormControl('', [Validators.required]),
+      favorito: new FormControl(false, [Validators.required]),
     })
-    this.form.patchValue(this.contato!)
+    if (this.contato)
+      this.form.patchValue(this.contato!)
   }
- 
 
   onSubmit() {
     if (this.form.valid) {
-
       this.contato = this.form.value
       this.onEnviarContato.emit(this.contato)
     }
-    else {
-      this.mostrarErros();
-    }
+    else
+      this.toast.error(this.form.validate().join("<br/>"), 'Erros ao Enviar Formulário', { enableHtml: true });
   }
 
- 
-  private mostrarErros(): void {
-    this.toast.error(this.form.validate().join("<br/>"), 'Erros ao Enviar Formulário', { enableHtml: true });
-  }
 }

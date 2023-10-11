@@ -34,7 +34,7 @@ export class FormularioCompromissoComponent implements OnInit{
       data: new FormControl(null, [this.validarData]),
       horaInicio: new FormControl('08:00', [Validators.required]),
       horaTermino: new FormControl('09:00', [Validators.required]),
-      contatoId: new FormControl('', [Validators.required])
+      contatoId: new FormControl('')
     })
     this.carregarFormulario();
     this.observarCampoTipoLocal();

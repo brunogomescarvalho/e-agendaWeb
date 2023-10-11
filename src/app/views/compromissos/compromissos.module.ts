@@ -11,6 +11,8 @@ import { EditarCompromissosComponent } from './editar-compromissos/editar-compro
 import { ExcluirCompromissoComponent } from './excluir-compromisso/excluir-compromisso.component';
 import { ContatosModule } from '../contatos/contatos.module';
 import { CompromissosRouterModule } from './router-module/compromissos.router.module';
+import { DetalhesCompromissoComponent } from './detalhes-compromisso/detalhes-compromisso.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -21,13 +23,15 @@ import { CompromissosRouterModule } from './router-module/compromissos.router.mo
     ListarCompromissosComponent,
     CardCompromissoComponent,
     EditarCompromissosComponent,
-    ExcluirCompromissoComponent
+    ExcluirCompromissoComponent,
+    DetalhesCompromissoComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     CompromissosRouterModule,
-    ContatosModule
+    ContatosModule,
+    NgbTooltipModule
   ],
   providers: [
     ContatoService,

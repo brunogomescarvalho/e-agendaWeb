@@ -10,28 +10,17 @@ export class CompromissoService {
 
   private endpoint: string = 'https://e-agenda-web-api.onrender.com/api/compromissos'
 
-  private obterHeadersAutorizacao() {
-    const token = environment.apiKey;
-
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      }),
-    };
-  }
-
   constructor(private httpClient: HttpClient) { }
 
   public inserir(compromisso: FormCompromissoViewModel) {
     return this.httpClient
-      .post<FormCompromissoViewModel>(this.endpoint, compromisso, this.obterHeadersAutorizacao())
+      .post<FormCompromissoViewModel>(this.endpoint, compromisso)
       .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()))
   }
 
   public selecionarTodos() {
     return this.httpClient
-      .get<any>(this.endpoint, this.obterHeadersAutorizacao())
+      .get<any>(this.endpoint)
       .pipe(map(res => res.dados),
         catchError((erro: HttpErrorResponse) => erro.processarErro()))
   }
@@ -39,7 +28,7 @@ export class CompromissoService {
 
   public selecionarPorId(id: string) {
     return this.httpClient
-      .get<any>(`${this.endpoint}/${id}`, this.obterHeadersAutorizacao())
+      .get<any>(`${this.endpoint}/${id}`)
       .pipe(map(res => res.dados),
         catchError((erro: HttpErrorResponse) => erro.processarErro()))
   }
@@ -48,7 +37,7 @@ export class CompromissoService {
     const url = `${this.endpoint}/visualizacao-completa/${id}`;
 
     return this.httpClient
-      .get<any>(url, this.obterHeadersAutorizacao())
+      .get<any>(url)
       .pipe(
         map((res) => res.dados),
         catchError((erro: HttpErrorResponse) => erro.processarErro()))
@@ -56,15 +45,15 @@ export class CompromissoService {
 
   public editar(id: string, compromisso: FormCompromissoViewModel) {
     return this.httpClient
-      .put<any>(`${this.endpoint}/${id}`, compromisso, this.obterHeadersAutorizacao())
+      .put<any>(`${this.endpoint}/${id}`, compromisso)
       .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
   }
 
   public excluir(id: string) {
     return this.httpClient
-      .delete<any>(`${this.endpoint}/${id}`, this.obterHeadersAutorizacao())
+      .delete<any>(`${this.endpoint}/${id}`)
       .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
   }
 
- 
+
 }
