@@ -16,19 +16,17 @@ import { CompromissoService } from '../service/compromisso.service';
 export class ListarCompromissosComponent implements OnInit {
   compromissos!: ListaCompromissosViewModel[]
 
-  @Output() onAbrirFiltro = new EventEmitter()
+  @Output() onAbrirModalFiltro = new EventEmitter()
 
   constructor(private service: CompromissoService, private route: ActivatedRoute, private router: Router, private toast: ToastrService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.obterCompromissos();
-
   }
 
   private obterCompromissos() {
-    let observer = this.route.data.pipe(map((dados) => dados['compromissos']))
-    this.subscribeCompromissos(observer)
-
+    let observable = this.route.data.pipe(map((dados) => dados['compromissos']))
+    this.subscribeCompromissos(observable)
   }
 
   public editar(compromisso: ListaCompromissosViewModel) {
@@ -44,11 +42,10 @@ export class ListarCompromissosComponent implements OnInit {
   }
 
   public abrirFiltro() {
-    this.onAbrirFiltro.emit(true)
+    this.onAbrirModalFiltro.emit(true)
   }
 
   public filtrarCompromissos(filtro: FiltroCompromisso) {
-
     let observable!: Observable<ListaCompromissosViewModel[]>
 
     switch (filtro.opcaoSelecionada) {
@@ -58,14 +55,16 @@ export class ListarCompromissosComponent implements OnInit {
         observable = this.service.obterCompromissosFuturos(filtro.dataInicial, filtro.dataFinal); break
       case 'Passados':
         observable = this.service.obterCompromissosPassados(filtro.dataReferencia); break
+      case 'Todos':
+        observable = this.service.selecionarTodos(); break
     }
 
     this.subscribeCompromissos(observable)
 
   };
 
-  private subscribeCompromissos(observer: Observable<ListaCompromissosViewModel[]>) {
-    observer.subscribe({
+  private subscribeCompromissos(observable: Observable<ListaCompromissosViewModel[]>) {
+    observable.subscribe({
       error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
       next: (dados) => {
         this.compromissos = dados;
@@ -74,8 +73,6 @@ export class ListarCompromissosComponent implements OnInit {
       }
     })
   }
-
-
 
 }
 

@@ -1,6 +1,6 @@
 export interface FiltroCompromisso{
-    dataInicial: Date
-    dataFinal: Date
-    dataReferencia: Date
+    dataInicial: string
+    dataFinal: string
+    dataReferencia: string
     opcaoSelecionada: string
 }

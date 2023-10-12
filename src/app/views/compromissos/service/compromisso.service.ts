@@ -8,7 +8,6 @@ import { ListaCompromissosViewModel } from '../models/listar-compromissos.view-m
 @Injectable()
 export class CompromissoService {
 
-
   private endpoint: string = 'https://e-agenda-web-api.onrender.com/api/compromissos'
 
   constructor(private httpClient: HttpClient) { }
@@ -49,17 +48,22 @@ export class CompromissoService {
       .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()));
   }
 
-  public obterCompromissosPassados(dataReferencia: Date): Observable<ListaCompromissosViewModel[]> {
-    return new Observable
+  public obterCompromissosPassados(dataReferencia: string): Observable<ListaCompromissosViewModel[]> {
+    return this.httpClient.get<any>(`${this.endpoint}/passados/${dataReferencia}`)
+      .pipe(map(res => res.dados),
+        catchError((erro: HttpErrorResponse) => erro.processarErro()))
   }
 
-  public obterCompromissosFuturos(dataInicial: Date, dataFinal: Date): Observable<ListaCompromissosViewModel[]> {
-    return new Observable
+  public obterCompromissosFuturos(dataInicial: string, dataFinal: string): Observable<ListaCompromissosViewModel[]> {
+    return this.httpClient.get<any>(`${this.endpoint}/futuros/${dataInicial}=${dataFinal}`)
+      .pipe(map(res => res.dados),
+        catchError((erro: HttpErrorResponse) => erro.processarErro()))
 
   }
   public obterCompromissosHoje(): Observable<ListaCompromissosViewModel[]> {
-    return new Observable
-
+    return this.httpClient.get<any>(this.endpoint + '/hoje')
+      .pipe(map(res => res.dados),
+        catchError((erro: HttpErrorResponse) => erro.processarErro()))
   }
 
 

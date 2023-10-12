@@ -11,23 +11,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FiltroCompromissosModalComponent implements OnInit {
 
-  form!: FormGroup
-
-  @Input() abrirFiltro?: EventEmitter<boolean>
-
-  filtro = {} as FiltroCompromisso
-
-  opcaoFiltro: string[] = ['Hoje', 'Passados', 'Futuros']
+  @Input() onAbrirModalFiltro?: EventEmitter<boolean>
 
   @Output() onEnviarFiltro = new EventEmitter<FiltroCompromisso>()
 
+  @ViewChild('content', { static: true }) contentTemplate!: TemplateRef<any>
+
+  opcoesFiltro: string[] = ['Todos', 'Hoje', 'Passados', 'Futuros']
+
+  form!: FormGroup
+
   constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private toast: ToastrService) { }
 
-  @ViewChild('content', { static: true }) contentTemplate!: TemplateRef<any>;
 
   ngOnInit(): void {
-
-    this.abrirFiltro?.asObservable().subscribe(() => {
+    this.onAbrirModalFiltro?.asObservable().subscribe(() => {
       this.modalService.open(this.contentTemplate)
     })
 
@@ -45,11 +43,15 @@ export class FiltroCompromissosModalComponent implements OnInit {
       this.toast.error(this.form.validate().join("<br/>"), 'Erros ao Enviar Formulário', { enableHtml: true });
       return
     }
+    const filtro: FiltroCompromisso = {
+      opcaoSelecionada: this.form.value.opcaoSelecionada,
+      dataInicial: new Date(this.form.value.Data_Inicial).toISOString(),
+      dataFinal: new Date(this.form.value.Data_Final).toISOString(),
+      dataReferencia: new Date(this.form.value.Data).toISOString(),
+    }
 
-    this.filtro = this.form.value
-
-    this.onEnviarFiltro.emit(this.filtro)
-
+    console.log(filtro)
+    this.onEnviarFiltro.emit(filtro)
     this.modalService.dismissAll()
   }
 

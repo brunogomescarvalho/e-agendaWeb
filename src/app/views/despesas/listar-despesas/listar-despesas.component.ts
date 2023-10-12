@@ -18,12 +18,9 @@ export class ListarDespesasComponent implements OnInit {
 
   constructor(private service: DespesasService, private toast: ToastrService, private router: Router) { }
 
-
   ngOnInit(): void {
     this.obterEnumFiltro();
-
     this.subscribeDespesas(this.service.selecionarTodos())
-
   }
 
   editar(despesa: ListarDespesasViewModel) {
