@@ -4,14 +4,14 @@ import { ListarContatosViewModel } from 'src/app/views/contatos/models/listar-co
 import { FormCompromissoViewModel } from '../../models/form-compromisso.view-model';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
-import { TipoLocal } from '../../models/TipoLocal';
+import { TipoLocal } from '../../models/tipoLocal';
 
 @Component({
   selector: 'app-formulario-compromisso',
   templateUrl: './formulario-compromisso.component.html',
   styleUrls: ['./formulario-compromisso.component.css']
 })
-export class FormularioCompromissoComponent implements OnInit{
+export class FormularioCompromissoComponent implements OnInit {
 
   @Output() onEnviarCompromisso = new EventEmitter<FormCompromissoViewModel>()
 
@@ -34,7 +34,7 @@ export class FormularioCompromissoComponent implements OnInit{
       data: new FormControl(null, [this.validarData]),
       horaInicio: new FormControl('08:00', [Validators.required]),
       horaTermino: new FormControl('09:00', [Validators.required]),
-      contatoId: new FormControl('')
+      contatoId: new FormControl('', [Validators.required])
     })
     this.carregarFormulario();
     this.observarCampoTipoLocal();
@@ -51,14 +51,14 @@ export class FormularioCompromissoComponent implements OnInit{
   }
 
   private carregarFormulario() {
-   if(this.compromisso){
-    const compromissoFormatado = {
-      ...this.compromisso,
-      data: this.datePipe.transform(this.compromisso.data, 'yyyy-MM-dd')
-    };
+    if (this.compromisso) {
+      const compromissoFormatado = {
+        ...this.compromisso,
+        data: this.datePipe.transform(this.compromisso.data, 'yyyy-MM-dd')
+      };
 
-    this.form.patchValue(compromissoFormatado);
-   }
+      this.form.patchValue(compromissoFormatado);
+    }
   }
 
   private mostrarErros(): void {

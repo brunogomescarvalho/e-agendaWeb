@@ -16,10 +16,15 @@ export class CardCompromissoComponent {
 
   @Output() onEditarCompromisso = new EventEmitter<ListaCompromissosViewModel>()
 
+  @Output() onDetalhesCompromisso = new EventEmitter<ListaCompromissosViewModel>()
+
   public editar(compromisso: ListaCompromissosViewModel) {
     this.onEditarCompromisso.emit(compromisso)
   }
-  public excluir(compromisso: any) {
+  public excluir(compromisso: ListaCompromissosViewModel) {
     this.onExcluirCompromisso.emit(compromisso)
+  }
+  public detalhes(compromisso: ListaCompromissosViewModel) {
+    this.onDetalhesCompromisso.emit(compromisso)
   }
 }

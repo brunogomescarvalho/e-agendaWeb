@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InserirCategoriaComponent } from './inserir-categoria/inserir-categoria.component';
 import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
 import { ExcluirCategoriaComponent } from './excluir-categoria/excluir-categoria.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -24,7 +25,8 @@ import { ExcluirCategoriaComponent } from './excluir-categoria/excluir-categoria
   imports: [
     CommonModule,
     CategoriasRouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbTooltipModule
   ],
   providers: [
     CategoriaService

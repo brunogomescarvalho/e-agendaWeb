@@ -10,6 +10,10 @@ import { InserirDespesaComponent } from './inserir-despesa/inserir-despesa.compo
 import { CardDespesasComponent } from './componentes/card-despesas/card-despesas.component';
 import { DespesasService } from './service/despesas.service';
 import { EditarDespesasComponent } from './editar-despesas/editar-despesas.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetalhesDespesaComponent } from './detalhes-despesa/detalhes-despesa.component';
+import { ExcluirDespesaComponent } from './excluir-despesa/excluir-despesa.component';
+
 
 
 
@@ -19,14 +23,16 @@ import { EditarDespesasComponent } from './editar-despesas/editar-despesas.compo
     ListarDespesasComponent,
     InserirDespesaComponent,
     CardDespesasComponent,
-    EditarDespesasComponent
+    EditarDespesasComponent,
+    DetalhesDespesaComponent,
+    ExcluirDespesaComponent
   ],
   imports: [
     CommonModule,
     NgSelectModule,
     ReactiveFormsModule,
     DespesasRouteModule,
-    FormsModule
+    NgbTooltipModule
   ],
   providers: [
     CategoriaService,

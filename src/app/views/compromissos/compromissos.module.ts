@@ -13,6 +13,7 @@ import { ContatosModule } from '../contatos/contatos.module';
 import { CompromissosRouterModule } from './router-module/compromissos.router.module';
 import { DetalhesCompromissoComponent } from './detalhes-compromisso/detalhes-compromisso.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { FiltroCompromissosModalComponent } from './componentes/filtro-compromissos.modal/filtro-compromissos.modal.component';
 
 
 
@@ -24,7 +25,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     CardCompromissoComponent,
     EditarCompromissosComponent,
     ExcluirCompromissoComponent,
-    DetalhesCompromissoComponent
+    DetalhesCompromissoComponent,
+    FiltroCompromissosModalComponent
   ],
   imports: [
     CommonModule,

@@ -15,10 +15,16 @@ export class CardDespesasComponent {
 
   @Output() onEditarDespesa = new EventEmitter<ListarDespesasViewModel>()
 
+  @Output() onDetalhesDespesa = new EventEmitter<ListarDespesasViewModel>()
+
   public editar(despesa: ListarDespesasViewModel) {
     this.onEditarDespesa.emit(despesa)
   }
-  public excluir(despesa: any) {
+  public excluir(despesa: ListarDespesasViewModel) {
     this.onExcluirDespesa.emit(despesa)
+  }
+
+  public detalhes(despesa: ListarDespesasViewModel) {
+    this.onDetalhesDespesa.emit(despesa)
   }
 }

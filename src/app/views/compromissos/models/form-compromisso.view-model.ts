@@ -1,5 +1,5 @@
 
-import { TipoLocal } from "./TipoLocal";
+import { TipoLocal } from "./tipoLocal";
 
 export class FormCompromissoViewModel {
     assunto: string;

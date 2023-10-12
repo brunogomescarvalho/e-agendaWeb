@@ -9,20 +9,23 @@
             </div>
 
             <!-- Barra de Ações -->
-            <div class="d-grid d-md-flex gap-1 mt-5">
+            <div class="d-grid d-md-flex gap-2 mt-5">
                 <a [routerLink]="['/compromissos/inserir']" role="button" class="btn btn-primary me-md-1">
                     <i class="pi pi-plus-circle me-2"></i>
                     Novo Compromisso
                 </a>
+                <button class="btn btn-lg btn-outline-primary" (click)="abrirFiltro()">Filtrar Compromissos</button>
             </div>
         </div>
 
         <div class="mt-5 row justify-content-center">
-            <div class="col-lg-4 col-md-6 col-sm-10 "  *ngFor="let compromisso of compromissos">
+            <div class="col-lg-3 col-md-6 col-sm-10 " *ngFor="let compromisso of compromissos">
                 <app-card-compromisso (onEditarCompromisso)="editar($event)" (onExcluirCompromisso)="excluir($event)"
-                [compromisso]="compromisso"></app-card-compromisso>
+                    (onDetalhesCompromisso)="detalhes($event)" [compromisso]="compromisso"></app-card-compromisso>
             </div>
         </div>
 
     </div>
+
+    <app-filtro-compromissos (onEnviarFiltro)="filtrarCompromissos($event)" [abrirFiltro]="onAbrirFiltro"></app-filtro-compromissos>
 </div>

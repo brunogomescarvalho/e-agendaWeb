@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card my-2">
     <div class="card-header text-bg-{{tema}}">
         <h5 class="card-title">{{despesa.descricao}}</h5>
 
@@ -9,13 +9,17 @@
         <p class="card-text"><strong>Forma de Pagamento: </strong> <span style="float: right;">{{despesa.formaPagamento}}</span></p>
     </div>
     
-    <hr>
+    <hr class="m-0">
     <div class="d-flex justify-content-center gap-3 m-2">
+        <button (click)="detalhes(despesa)" class="btn btn-outline-{{tema}}" aria-label="Detalhes"
+            ngbTooltip="Detalhes" placement="bottom">
+            <i class="bi bi-eye"></i>
+        </button>
         <button (click)="editar(despesa)" class="btn btn-outline-{{tema}}" aria-label="Editar" ngbTooltip="Editar"
             placement="bottom">
             <i class="bi bi-pen"></i>
         </button>
-        <button (click)="excluir(despesa)" class="btn btn-outline-{{tema}}" aria-label="Editar" ngbTooltip="Excluir"
+        <button (click)="excluir(despesa)" class="btn btn-outline-{{tema}}" aria-label="Excluir" ngbTooltip="Excluir"
             placement="bottom">
             <i class="bi bi-trash"></i>
         </button>

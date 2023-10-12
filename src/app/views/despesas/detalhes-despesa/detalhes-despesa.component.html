@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <!-- Conteúdo principal -->
+        <div class="col-12 col-md-10 col-lg-9 mx-auto my-5">
+            <!-- Titulo -->
+            <div class="text-md-start">
+                <div class="text-md-start">
+                    <h1 class="fw-bold text-primary">Detalhes Despesa</h1>
+                    <hr />
+                </div>
+
+                <h2 class="fs-5">
+                    Descrição:
+                    <span class="fw-bolder fst-italic">{{despesa.descricao}} </span>
+                </h2>
+                <div>
+                    <dl class="form-group row">
+                        <dt class="col-md-4">
+                            <label class="control-label">Valor:</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            {{despesa.valor | currency:'R$'}}
+                        </dd>
+
+                        <dt class="col-md-4">
+                            <label class="control-label">Data:</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            {{despesa.data | date:'dd/MM/yyyy'}}
+                        </dd>
+
+                        <dt class="col-md-4">
+                            <label class="control-label">Forma de Pagamento:</label>
+                        </dt>
+                        <dd class="col-md-8">
+                            {{despesa.formaPagamento}}
+                        </dd>
+                        <hr class="m-0 mb-2">
+                        <dt class="col-md-4 mb-2">
+                            <label class="control-label text-primary fs-4">Categoria(s):</label>
+                        </dt>
+                        <div *ngFor="let categoria of despesa?.categorias">
+                            <dd class="col-md-8">
+                                <strong>{{categoria | uppercase}}</strong>
+                            </dd>
+                        </div>
+
+                    </dl>
+
+                    <div class="card-footer g-grid d-flex gap-1 my-5">
+                        <button [routerLink]="['despesas/listar']" type="button" class="btn btn-outline-primary px-5">
+                            <i class="bi bi-arrow-return-left me-2"></i>
+                            Voltar
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>

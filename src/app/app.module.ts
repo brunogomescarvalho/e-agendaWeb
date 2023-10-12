@@ -13,7 +13,6 @@ import { TokenInterceptor } from './services/interceptor/token.interceptor';
 import './extensions/form-group.extension'
 import './extensions/http-error-response.extension'
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +26,8 @@ import './extensions/http-error-response.extension'
     CoreModule,
     HttpClientModule,
     LoginModule,
-
+   
+    
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-center',

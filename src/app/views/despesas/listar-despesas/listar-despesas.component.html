@@ -1,28 +1,32 @@
 <div class="container">
     <div class="row">
-        <!-- Conteúdo principal -->
-        <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
-            <!-- Titulo -->
+        <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5 flex-column">
             <div class="text-md-start">
                 <h1 class="fw-bold text-primary">Listar Despesas</h1>
                 <hr />
             </div>
 
-            <!-- Barra de Ações -->
-            <div class="d-grid d-md-flex gap-1 mt-5">
+            <div class="d-flex align-items-center justify-content-start gap-2 mt-5">
                 <a [routerLink]="['/despesas/inserir']" role="button" class="btn btn-primary me-md-1">
                     <i class="pi pi-plus-circle me-2"></i>
                     Nova Despesa
                 </a>
+
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label text-primary fs-4 fw-semibold px-3 m-0">Filtrar:</label>
+                    <select (change)="onSelectChange($event)" class="form-select form-select-lg"
+                        aria-label="Large select example">
+                        <option *ngFor="let opcao of opcaoFiltro" [value]="opcao.valor">{{opcao.descricao}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-5 row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-10" *ngFor="let despesa of despesas">
+                    <app-card-despesas (onEditarDespesa)="editar($event)" (onExcluirDespesa)="excluir($event)"
+                        (onDetalhesDespesa)="detalhes($event)" [despesa]="despesa"></app-card-despesas>
+                </div>
             </div>
         </div>
-
-        <div class="mt-5 row justify-content-center">
-            <div class="col-lg-4 col-md-6 col-sm-10 " *ngFor="let despesa of despesas">
-                <app-card-despesas (onEditarDespesa)="editar($event)" (onExcluirDespesa)="excluir($event)"
-                    [despesa]="despesa"></app-card-despesas>
-            </div>
-        </div>
-
     </div>
 </div>

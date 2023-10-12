@@ -3,9 +3,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { InserirDespesaComponent } from "../inserir-despesa/inserir-despesa.component";
 import { usuarioAutenticadoGuard } from "src/app/services/guards/usuario-autenticado.guard";
 import { ListarDespesasComponent } from "../listar-despesas/listar-despesas.component";
-import { selecionarDespesasPorId, selecionarTodasDespesasResolve } from "../resolvers/resolver-despesas";
+import { selecionarDespesasPorId, selecionarTodasDespesasResolve, visualizarDespesaCompletaResolve } from "../resolvers/resolver-despesas";
 import { listarCategoriasResolve } from "../../categorias/resolvers/resolvers-categorias";
 import { EditarDespesasComponent } from "../editar-despesas/editar-despesas.component";
+import { DetalhesDespesaComponent } from "../detalhes-despesa/detalhes-despesa.component";
+import { ExcluirDespesaComponent } from "../excluir-despesa/excluir-despesa.component";
 
 const routes: Routes = [
     {
@@ -29,6 +31,18 @@ const routes: Routes = [
         path: 'editar/:id',
         component: EditarDespesasComponent,
         resolve: { 'despesa': selecionarDespesasPorId, 'categorias': listarCategoriasResolve },
+        canActivate: [usuarioAutenticadoGuard]
+    },
+    {
+        path: 'detalhes/:id',
+        component: DetalhesDespesaComponent,
+        resolve: { 'despesa': visualizarDespesaCompletaResolve},
+        canActivate: [usuarioAutenticadoGuard]
+    },
+    {
+        path: 'excluir/:id',
+        component: ExcluirDespesaComponent,
+        resolve: { 'despesa': visualizarDespesaCompletaResolve},
         canActivate: [usuarioAutenticadoGuard]
     }
 ]

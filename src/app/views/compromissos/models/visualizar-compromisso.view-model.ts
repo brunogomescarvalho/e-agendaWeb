@@ -1,5 +1,5 @@
 import { ListarContatosViewModel } from "../../contatos/models/listar-contato.view-model";
-import { TipoLocal } from "./TipoLocal";
+import { TipoLocal } from "./tipoLocal";
 
 export class VisualizarCompromissoViewModel {
     id: string;
