@@ -1,0 +1,31 @@
+<div class="card mb-2">
+    <div class="card-header text-bg-primary">
+        <h5 class="card-title">Título: {{ tarefa.titulo }}</h5>
+    </div>
+    <div class="card-body pb-0">
+        <p class=' fw-semibold'>Data Criação: <span class="fw-normal">{{tarefa.dataCriacao|date:'dd/MM/yyyy'}}</span></p>
+    </div>
+    <div class="card-body pb-0">
+        <p class=' fw-semibold'>Prioridade: <span class="px-4"
+                [class]="tarefa.prioridade == 'Normal'?  'text-primary': tarefa.prioridade == 'Baixinha'? 'text-info' : 'text-danger'">{{tarefa.prioridade}}</span>
+        </p>
+    </div>
+    <div class="card-body pb-0">
+        <p class=' fw-semibold'>Situação: <span class="px-4"
+                [class]="tarefa.situacao == 'Pendente'?  'text-danger':'text-success'">{{tarefa.situacao}}</span></p>
+    </div>
+    <hr class=" m-0">
+    <div class="d-flex justify-content-center gap-3 m-2">
+        <button (click)="editar(tarefa)" type="button" class="btn btn-outline-primary" aria-label="Editar"
+            ngbTooltip="Editar" placement="bottom">
+            <i class="bi bi-pen"></i>
+        </button>
+        <button (click)="detalhes(tarefa)" type="button" class="btn btn-outline-primary" aria-label="Detalhes"
+            ngbTooltip="Detalhes" placement="bottom">
+            <i class="bi bi-eye"></i>
+        </button>
+        <button type="button" class="btn btn-outline-primary" (click)="excluir(tarefa)" ngbTooltip="Excluir"  placement="bottom">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+    </div>
+</div>

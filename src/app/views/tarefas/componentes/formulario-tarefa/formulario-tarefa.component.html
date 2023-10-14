@@ -1,0 +1,80 @@
+<div class="container mb-5">
+    <div class="row">
+      <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+        <div class="text-md-start">
+          <h1 class="fw-bold text-primary">{{ titulo }}</h1>
+        </div>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
+          {{ form.value | json }}
+  
+          <div class="form-group mb-3 position-relative">
+            <label class="form-label">Título:</label>
+            <input
+              formControlName="titulo"
+              class="form-control"
+              type="text"
+              placeholder="Digite o título da tarefa"
+              [ngClass]="{
+                'is-valid': form.campoValido('titulo') == true,
+                'is-invalid': form.campoValido('titulo') == false
+              }"
+            />
+          </div>
+  
+          <div class="d-flex align-items-center gap-2 m-4">
+            <label class="form-label text-primary fs-4 fw-semibold px-3 m-0">Prioridade:</label>
+            <select
+              formControlName="prioridade"
+              class="form-select form-select-md"
+              aria-label="Large select example"
+            >
+              <option *ngFor="let opcao of prioridadeTarefa" [value]=opcao.valor>{{ opcao.descricao }}</option>
+            </select>
+          </div>
+          <hr>
+  
+          <div class="form-group mb-3 position-relative">
+            <h3 class="text-primary">Itens Tarefa</h3>
+            <div formArrayName="itens">
+              <div>
+           
+                <input class="form-control" type="text" #item [ngClass]="{
+                    'is-invalid': !itemValido,
+                  }">
+                <div class="mt-3">
+                  <button (click)="adicionarItem(item)" data-cy="btnGravarItem" type="button"
+                    class="btn btn-outline-primary px-5 m-3">
+                    <i class="bi bi-plus-circle-fill"></i>
+                    Adicionar
+                  </button>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row d-flex">
+              <div class="col-6" *ngFor="let item of itensFiltrados; let i = index">
+               
+                  <app-card-itens-tarefa [item]="item" (onFinalizarItem)="finalizar($event)"
+                    (onExcluirItem)="removerItem($event)"
+                  ></app-card-itens-tarefa>
+                </div>
+             
+            </div>
+          </div>
+  
+          <div class="card-footer g-grid d-flex gap-1 mt-5">
+            <button data-cy="btnGravar" type="submit" class="btn btn-primary px-5">
+              <i class="bi bi-save me-2"></i>
+              Gravar
+            </button>
+            <button routerLink="/tarefas/listar" type="button" class="btn btn-outline-primary px-5">
+              <i class="pi pi-arrow-left me-2"></i>
+              Voltar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
+
+            <div class="text-md-start">
+                <h1 class="fw-bold text-primary">Listar Tarefas</h1>
+                <hr />
+            </div>
+
+            <div class="d-grid d-md-flex gap-1 mt-5">
+
+                <a [routerLink]="['/tarefas/inserir']" role="button" class="btn btn-primary me-md-1">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Nova Tarefa
+                </a>
+            </div>
+
+        </div>
+
+        <div class="mt-5 row justify-content-center">
+            <div class="col-lg-3 col-md-6 col-sm-10 " *ngFor="let item of tarefas">
+                <app-card-tarefa (onEditarTarefa)="editar($event)" (onExcluirTarefa)="excluir($event)" (onDetalhesTarefa)="detalhes($event)"
+                    [tarefa]="item"></app-card-tarefa>
+            </div>
+        </div>
+
+    </div>
+</div>

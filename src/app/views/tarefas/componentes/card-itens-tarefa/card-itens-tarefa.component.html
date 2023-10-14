@@ -1,0 +1,18 @@
+<div class="card mb-2">
+    <div class="card-header text-bg-primary">
+        <h5 class="card-title">Título: {{ item.titulo }}</h5>
+    </div>
+    <div class="card-body pb-0">
+        <p class='text-primary fw-semibold'>Status: <span class="px-4" [class]= "item.concluido? 'text-success': 'text-danger'">{{item.concluido? 'Concluído':'Pendente'}}</span></p>
+    </div>
+    <hr class=" m-0">
+    <div class="d-flex justify-content-center gap-3 m-2">
+        <button type="button" class="mx-3 btn btn-outline-danger" (click)="removerItem(item)">
+            <i class="bi bi-trash-fill"></i>
+        </button>
+        <button (click)="finalizar(item)" type="button" class="btn btn-outline-primary" aria-label="Editar"
+            ngbTooltip="Finalizar" placement="bottom">
+            <i class="bi bi-check-circle-fill"></i>
+        </button>
+    </div>
+</div>

@@ -42,7 +42,7 @@ export class ListarCompromissosComponent implements OnInit {
   }
 
   public abrirFiltro() {
-    this.onAbrirModalFiltro.emit(true)
+    this.onAbrirModalFiltro.emit()
   }
 
   public filtrarCompromissos(filtro: FiltroCompromisso) {

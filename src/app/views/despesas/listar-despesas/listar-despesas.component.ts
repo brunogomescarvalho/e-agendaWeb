@@ -39,8 +39,8 @@ export class ListarDespesasComponent implements OnInit {
     
     switch (Number(opcao.target.value)) {
       case 0: observable = this.service.selecionarTodos(); break
-      case 1: observable = this.service.selecionarAntigas(); break
-      case 2: observable = this.service.selecionarUltimos30Dias(); break
+      case 1: observable = this.service.selecionarUltimos30Dias(); break
+      case 2: observable = this.service.selecionarAntigas(); break
     }
 
     this.subscribeDespesas(observable);

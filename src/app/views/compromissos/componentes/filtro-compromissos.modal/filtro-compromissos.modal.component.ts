@@ -50,7 +50,6 @@ export class FiltroCompromissosModalComponent implements OnInit {
       dataReferencia: new Date(this.form.value.Data).toISOString(),
     }
 
-    console.log(filtro)
     this.onEnviarFiltro.emit(filtro)
     this.modalService.dismissAll()
   }
