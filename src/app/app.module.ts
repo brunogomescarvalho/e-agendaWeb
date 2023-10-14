@@ -25,8 +25,6 @@ import './extensions/http-error-response.extension'
     DashboardModule,
     CoreModule,
     HttpClientModule,
-    LoginModule,
-   
     
     ToastrModule.forRoot({
       timeOut: 5000,

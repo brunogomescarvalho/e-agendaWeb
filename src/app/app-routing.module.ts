@@ -47,6 +47,11 @@ const routes: Routes = [
     loadChildren: () => import('./views/tarefas/tarefas.module')
       .then(m => m.TarefasModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./views/login/login.module')
+      .then(m => m.LoginModule)
+  },
 
 ];
 

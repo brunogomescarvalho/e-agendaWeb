@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../service/login.service';
+
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { LoginUsuarioViewModel } from '../models/login.view-model';
+import { UsuarioService } from 'src/app/core/usuarioService/usuario.service';
+import { LoginService } from 'src/app/core/authService/login.service';
+import { TokenUsuario } from '../models/token.view-model';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,7 @@ import { LoginUsuarioViewModel } from '../models/login.view-model';
 export class LoginComponent implements OnInit {
   form!: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private service: LoginService, private toast: ToastrService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private service: LoginService, private toast: ToastrService, private router: Router, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -28,7 +31,15 @@ export class LoginComponent implements OnInit {
       this.service.autenticar(usuario)
         .subscribe({
           error: (erro: Error) => this.toast.error(erro.message, 'Usuário não encontrado'),
-          next: () => this.router.navigate(['/dashboard'])
+          next: (usuario) => {
+            const tokenUsuario: TokenUsuario = {
+              chave: usuario.dados.chave,
+              usuario: usuario.dados.usuarioToken,
+              dataExpiracao: usuario.dados.dataExpiracao,
+            }
+            this.usuarioService.logarUsario(tokenUsuario)
+            this.router.navigate(['/dashboard'])
+          }
         })
     }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login/service/login.service';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/core/usuarioService/usuario.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,15 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  usuarioLogado?: string
-  constructor(private router: Router, private loginService: LoginService) { }
 
-  ngOnInit(): void {
-    if (!this.loginService.tokenValido())
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
+
+  usuarioLogado?: string;
+
+
+  ngOnInit() {
+    if (!this.usuarioService.tokenValido()) {
       this.router.navigate(['/login'])
-    else
-      this.usuarioLogado = this.loginService.obterUsuarioLogado()
-
+    }
+    else {
+      this.usuarioLogado = this.usuarioService.obterUsuarioLogado()
+    }
   }
-
 }
+
+

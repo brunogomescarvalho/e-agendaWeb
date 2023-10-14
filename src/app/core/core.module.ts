@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginService } from './authService/login.service';
+import { UsuarioService } from './usuarioService/usuario.service';
 
 
 
@@ -15,8 +17,12 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     NgbCollapseModule
   ],
-  exports:[
+  exports: [
     NavbarComponent
+  ],
+  providers: [
+    LoginService,
+    UsuarioService
   ]
 })
 export class CoreModule { }

@@ -6,8 +6,9 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoginService } from 'src/app/views/login/service/login.service';
+import { LoginService } from 'src/app/core/authService/login.service';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/core/usuarioService/usuario.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -18,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     const token = JSON.parse(localStorage.getItem('tokenEAgenda')!)
 
-    if (!inject(LoginService).tokenValido()) {
+    if (!inject(UsuarioService).tokenValido()) {
       this.router.navigate(['/login'])
       return next.handle(request);
     }
