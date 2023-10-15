@@ -10,6 +10,7 @@ import { InserirCategoriaComponent } from './inserir-categoria/inserir-categoria
 import { EditarCategoriaComponent } from './editar-categoria/editar-categoria.component';
 import { ExcluirCategoriaComponent } from './excluir-categoria/excluir-categoria.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetalhesCategoriaComponent } from './detalhes-categoria/detalhes-categoria.component';
 
 
 
@@ -20,7 +21,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     FormularioCategoriaComponent,
     InserirCategoriaComponent,
     EditarCategoriaComponent,
-    ExcluirCategoriaComponent
+    ExcluirCategoriaComponent,
+    DetalhesCategoriaComponent
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,7 @@ import { usuarioAutenticadoGuard } from "src/app/services/guards/usuario-autenti
 import { EditarContatoComponent } from "../editar-contato/editar-contato.component";
 import { ExcluirContatoComponent } from "../excluir-contato/excluir-contato.component";
 
-import { formContatoResolve, listarContatoResolve, contatoCompletoResolve } from "../resolvers/contato-resolver";
+import { formContatoResolve, listarContatoResolve, contatoCompletoResolve } from "./contato-resolver";
 import { InserirContatosComponent } from "../inserir-contatos/inserir-contatos.component";
 import { ListarContatosComponent } from "../listar-contatos/listar-contatos.component";
 import { DetalhesContatoComponent } from "../detalhes-contato/detalhes-contato.component";

@@ -17,11 +17,17 @@ export class CategoriaCardComponent {
 
   @Output() onEditarCategoria = new EventEmitter<ListarCategoriasViewModel>()
 
+  @Output() onDetalhesCategoria = new EventEmitter<ListarCategoriasViewModel>()
+
   public editar(categoria: ListarCategoriasViewModel) {
     this.onEditarCategoria.emit(categoria)
   }
-  public excluir(categoria: any) {
+  public excluir(categoria: ListarCategoriasViewModel) {
     this.onExcluirCategoria.emit(categoria)
+  }
+
+  public detalhes(categoria: ListarCategoriasViewModel) {
+    this.onDetalhesCategoria.emit(categoria)
   }
 }
 

@@ -34,4 +34,8 @@ export class ListarCategoriasComponent implements OnInit {
   editar(categoria: ListarCategoriasViewModel) {
     this.router.navigate(['categorias/editar', categoria.id])
   }
+
+  detalhes(categoria: ListarCategoriasViewModel) {
+    this.router.navigate(['categorias/detalhes', categoria.id])
+  }
 }

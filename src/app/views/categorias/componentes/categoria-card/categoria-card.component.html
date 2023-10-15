@@ -1,8 +1,12 @@
 <div class="card mb-2">
     <div class="card-header text-bg-{{tema}}">
-        <h5 class="card-title text-center">{{categoria.titulo | uppercase}}</h5>   
+        <h5 class="card-title text-center">{{categoria.titulo | uppercase}}</h5>
     </div>
     <div class="d-flex justify-content-center gap-3 m-2">
+        <button (click)="detalhes(categoria)" class="btn btn-outline-{{tema}}" aria-label="Detalhes"
+            ngbTooltip="Detalhes" placement="bottom">
+            <i class="bi bi-eye"></i>
+        </button>
         <button (click)="editar(categoria)" class="btn btn-outline-{{tema}}" aria-label="Editar" ngbTooltip="Editar"
             placement="bottom">
             <i class="bi bi-pen"></i>
