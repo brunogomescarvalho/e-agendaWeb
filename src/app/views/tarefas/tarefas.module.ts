@@ -12,7 +12,7 @@ import { CardItensTarefaComponent } from './componentes/card-itens-tarefa/card-i
 import { TarefasService } from './service/tarefas.service';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetalhesTarefaComponent } from './detalhes-tarefa/detalhes-tarefa.component';
-import { CoreModule } from 'src/app/core/core.module';
+import { ModalModule } from 'src/app/views/modal-filtro/modal.module';
 
 @NgModule({
   declarations: [
@@ -31,10 +31,11 @@ import { CoreModule } from 'src/app/core/core.module';
     TarefasRouterModule,
     ReactiveFormsModule,
     NgbTooltipModule,
-    CoreModule
+    ModalModule
   ],
   providers:[
-    TarefasService
+    TarefasService,
+    
   ]
 })
 export class TarefasModule { }

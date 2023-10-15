@@ -5,8 +5,6 @@ import { RegistroRouterModule } from './router-module/registro.router-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 
-
-
 @NgModule({
   declarations: [ RegistrarUsuarioComponent,],
   imports: [

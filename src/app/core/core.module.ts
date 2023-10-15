@@ -1,29 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from './services/authService/login.service';
 import { UsuarioService } from './services/usuarioService/usuario.service';
-import { ModalComponent } from './componentes/modal/modal.component';
 import { FormsModule } from '@angular/forms';
-
-
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    ModalComponent
+    NavbarComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    NgbCollapseModule,
-    FormsModule
+    NgbCollapseModule
   ],
   exports: [
-    NavbarComponent,
-    ModalComponent
+    NavbarComponent
   ],
   providers: [
     LoginService,

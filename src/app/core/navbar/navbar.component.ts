@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../../services/usuarioService/usuario.service';
+import { UsuarioService } from '../services/usuarioService/usuario.service';
 import { Observable } from 'rxjs';
 import { TokenUsuario } from 'src/app/views/login/models/token.view-model';
 

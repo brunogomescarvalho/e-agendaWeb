@@ -13,7 +13,8 @@ import { EditarDespesasComponent } from './editar-despesas/editar-despesas.compo
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetalhesDespesaComponent } from './detalhes-despesa/detalhes-despesa.component';
 import { ExcluirDespesaComponent } from './excluir-despesa/excluir-despesa.component';
-import { CoreModule } from 'src/app/core/core.module';
+import { ModalModule } from 'src/app/views/modal-filtro/modal.module';
+
 
 
 
@@ -34,12 +35,12 @@ import { CoreModule } from 'src/app/core/core.module';
     ReactiveFormsModule,
     DespesasRouteModule,
     NgbTooltipModule,
-    CoreModule
+    ModalModule
   ],
   providers: [
     CategoriaService,
     DespesasService,
-    DatePipe
+    DatePipe,
   ]
 })
 export class DespesasModule { }

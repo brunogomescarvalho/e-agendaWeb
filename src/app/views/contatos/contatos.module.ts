@@ -12,8 +12,8 @@ import 'src/app/extensions/form-group.extension';
 import { ContatoRouterModule } from './router-module/contatos-router.module';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetalhesContatoComponent } from './detalhes-contato/detalhes-contato.component';
-import { ModalComponent } from 'src/app/core/componentes/modal/modal.component';
-import { CoreModule } from 'src/app/core/core.module';
+import { ModalModule } from 'src/app/views/modal-filtro/modal.module';
+
 
 
 
@@ -32,11 +32,11 @@ import { CoreModule } from 'src/app/core/core.module';
     ReactiveFormsModule,
     ContatoRouterModule,
     NgbTooltipModule,
-    CoreModule
+    ModalModule
   ],
   providers: [
     ContatoService,
-  
+   
   ]
 })
 export class ContatosModule { }

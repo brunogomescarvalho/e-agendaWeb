@@ -6,7 +6,6 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoginService } from 'src/app/core/services/authService/login.service';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/core/services/usuarioService/usuario.service';
 
@@ -20,11 +19,14 @@ export class TokenInterceptor implements HttpInterceptor {
     const token = JSON.parse(localStorage.getItem('tokenEAgenda')!)
 
     if (!inject(UsuarioService).tokenValido()) {
+
       this.router.navigate(['/login'])
+
       return next.handle(request);
     }
 
     request = request.clone({
+
       setHeaders: {
         Authorization: `Bearer ${token.chave}`,
         token: `${token.chave}`

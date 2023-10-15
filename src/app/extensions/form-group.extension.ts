@@ -4,7 +4,6 @@ declare module '@angular/forms' {
     interface FormGroup {
         validate(): string[];
         campoValido(campo: string): boolean | undefined;
-        minLengthValidator(campo: string, minLength: number): any
     }
 }
 
