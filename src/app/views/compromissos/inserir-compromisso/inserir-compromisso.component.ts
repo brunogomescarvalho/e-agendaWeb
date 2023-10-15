@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormCompromissoViewModel } from '../models/form-compromisso.view-model';
 import { ListarContatosViewModel } from '../../contatos/models/listar-contato.view-model';
-import { ContatoService } from '../../contatos/service/contato.service';
 import { CompromissoService } from '../service/compromisso.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';

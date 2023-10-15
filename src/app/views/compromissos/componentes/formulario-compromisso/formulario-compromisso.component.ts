@@ -4,7 +4,8 @@ import { ListarContatosViewModel } from 'src/app/views/contatos/models/listar-co
 import { FormCompromissoViewModel } from '../../models/form-compromisso.view-model';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
-import { TipoLocal } from '../../models/tipoLocal';
+import { TipoLocal } from '../../models/tipoLocal-compromisso';
+
 
 @Component({
   selector: 'app-formulario-compromisso',
