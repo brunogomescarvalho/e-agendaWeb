@@ -1,0 +1,51 @@
+<div class="row mx-4 mt-4 justify-content-center">
+    <div class="col-sm-10 col-md-6 col-lg-4">
+        <h2 class="text-primary">Cadastre-se</h2>
+        <P>Abaixo, você pode se cadastrar no <span class="text-primary fs-4 fw-semibold">e-Agenda</span></P>
+        <hr>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center mt-2">
+    <div class="col-lg-4 col-sm-12">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form">
+
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input formControlName="nome" type="text" class="form-control" id="nome" [ngClass]="{
+                    'is-valid':form.campoValido('nome') == true, 
+                    'is-invalid':form.campoValido('nome') == false}" />
+            </div>
+
+
+            <div class="mb-3">
+                <label for="staticEmail" class="form-label">Email</label>
+                <input formControlName="email" type="text" class="form-control" id="staticEmail" [ngClass]="{
+                    'is-valid':form.campoValido('email') == true, 
+                    'is-invalid':form.campoValido('email') == false}" />
+            </div>
+
+
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Senha</label>
+                <input type="password" formControlName="senha" class="form-control" id="inputPassword" [ngClass]="{
+                    'is-valid':form.campoValido('senha') == true, 
+                    'is-invalid':form.campoValido('senha') == false}" />
+            </div>
+
+
+            <div class="mb-3">
+                <label for="inputPassword2" class="form-label">Confirmar Senha</label>
+                <input type="password" formControlName="confirmarSenha" class="form-control" id="inputPassword2"
+                    [ngClass]="{
+                    'is-valid':form.campoValido('confirmarSenha') == true, 
+                    'is-invalid':form.campoValido('confirmarSenha') == false}" />
+
+            </div>
+            <div class="mt-4  mb-3">
+                <button class="btn btn-success mx-3" type="submit">Cadastrar-se</button>
+                <button routerLink="/login" class="btn btn-primary" type="button">Voltar</button>
+            </div>
+        </form>
+    </div>
+</div>

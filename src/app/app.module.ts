@@ -10,7 +10,7 @@ import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { TokenInterceptor } from './services/interceptor/token.interceptor';
 import './extensions/form-group.extension'
-import './extensions/http-error-response.extension'
+import './extensions/http-error-response.extension';
 
 @NgModule({
   declarations: [

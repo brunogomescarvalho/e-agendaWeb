@@ -3,7 +3,8 @@ import { FormGroup } from "@angular/forms";
 declare module '@angular/forms' {
     interface FormGroup {
         validate(): string[];
-        campoValido(campo: string): boolean | undefined
+        campoValido(campo: string): boolean | undefined;
+        minLengthValidator(campo: string, minLength: number): any
     }
 }
 
@@ -24,8 +25,24 @@ FormGroup.prototype.validate = function () {
 
             else if (control.errors!['categoriaDespesaNaoSelecionada'])
                 msg = '* É necessário selecionar ao menos uma categoria'
+
+            else if (control.errors!['senhasDiferentes'])
+                msg = '* As senhas digitadas são diferentes'
+
+            else if (control.errors!['senhaMinLength']) 
+                msg = `*A senha precisa ter no mínimo '6' caracteres`
+            
+            else if (control.errors!['caracterEspecial']) 
+                msg = `*A senha precisa ter no mínimo '1' caracter não alfa-numérico`
+            
+            else if (control.errors!['letraCaixaAlta']) 
+                msg = `*A senha precisa ter no mínimo '1' letra 'Maiúscula'`
+            
+            else if (control.errors!['letraCaixaBaixa']) 
+                msg = `*A senha precisa ter no mínimo '1' letra 'Minúscula'`
+            
             else
-                msg = `* ${item} é obrigatório`
+                msg = `* O campo '${item}' é obrigatório`
 
             erros.push(msg)
             control?.markAsTouched()

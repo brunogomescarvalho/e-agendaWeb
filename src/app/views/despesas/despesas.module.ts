@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormularioDespesasComponent } from './componentes/formulario-despesas/formulario-despesas.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DespesasRouteModule } from './router-module/despesas.router-module';
 import { CategoriaService } from '../categorias/service/categoria.service';
 import { ListarDespesasComponent } from './listar-despesas/listar-despesas.component';

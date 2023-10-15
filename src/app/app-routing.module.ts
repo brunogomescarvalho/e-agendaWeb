@@ -53,6 +53,12 @@ const routes: Routes = [
       .then(m => m.LoginModule)
   },
 
+  {
+    path: 'registro',
+    loadChildren: () => import('./views/registro/registro.module')
+      .then(m => m.RegistroModule)
+  },
+
 ];
 
 @NgModule({
