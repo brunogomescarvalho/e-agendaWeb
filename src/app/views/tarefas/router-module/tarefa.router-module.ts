@@ -40,7 +40,7 @@ const routes: Routes = [
     {
         path: 'excluir/:id',
         component: ExcluirTarefaComponent,
-        resolve: { 'tarefa': buscarTarefaPorIdResolve },
+        resolve: { 'tarefa': buscarTarefaCompletaPorIdResolve },
         canActivate: [usuarioAutenticadoGuard]
     }
 ]

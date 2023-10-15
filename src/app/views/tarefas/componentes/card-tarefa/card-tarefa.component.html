@@ -1,6 +1,6 @@
 <div class="card mb-2">
     <div class="card-header text-bg-primary">
-        <h5 class="card-title">Título: {{ tarefa.titulo }}</h5>
+        <h5 class="card-title"><small>Título:</small> {{ tarefa.titulo | uppercase}}</h5>
     </div>
     <div class="card-body pb-0">
         <p class=' fw-semibold'>Data Criação: <span class="fw-normal">{{tarefa.dataCriacao|date:'dd/MM/yyyy'}}</span></p>

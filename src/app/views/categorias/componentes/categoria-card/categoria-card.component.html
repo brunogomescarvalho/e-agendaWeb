@@ -1,6 +1,6 @@
 <div class="card mb-2">
     <div class="card-header text-bg-{{tema}}">
-        <h5 class="card-title">{{categoria.titulo}}</h5>   
+        <h5 class="card-title text-center">{{categoria.titulo | uppercase}}</h5>   
     </div>
     <div class="d-flex justify-content-center gap-3 m-2">
         <button (click)="editar(categoria)" class="btn btn-outline-{{tema}}" aria-label="Editar" ngbTooltip="Editar"
