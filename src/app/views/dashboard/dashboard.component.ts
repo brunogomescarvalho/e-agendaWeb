@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/core/usuarioService/usuario.service';
+import { UsuarioService } from 'src/app/core/services/usuarioService/usuario.service';
+import { TokenUsuario } from '../login/models/token.view-model';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/login'])
     }
     else {
-      this.usuarioLogado = this.usuarioService.obterUsuarioLogado()
+      this.usuarioLogado = this.usuarioService.obterUsuarioLogado().usuario.nome
     }
   }
 }

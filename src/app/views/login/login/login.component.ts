@@ -4,8 +4,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { LoginUsuarioViewModel } from '../models/login.view-model';
-import { UsuarioService } from 'src/app/core/usuarioService/usuario.service';
-import { LoginService } from 'src/app/core/authService/login.service';
+import { UsuarioService } from 'src/app/core/services/usuarioService/usuario.service';
+import { LoginService } from 'src/app/core/services/authService/login.service';
 import { TokenUsuario } from '../models/token.view-model';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../usuarioService/usuario.service';
+import { UsuarioService } from '../../services/usuarioService/usuario.service';
 import { Observable } from 'rxjs';
 import { TokenUsuario } from 'src/app/views/login/models/token.view-model';
 
@@ -16,19 +16,17 @@ export class NavbarComponent implements OnInit {
 
   usuarioLogado!: Observable<TokenUsuario | null>;
 
-  tokenValido: boolean = false
-
   constructor(private router: Router, private usuarioService: UsuarioService) { }
+  
   ngOnInit(): void {
     this.usuarioLogado = this.usuarioService.usuarioLogado()
-    this.tokenValido = this.usuarioService.tokenValido()
   }
 
   sair() {
 
     localStorage.removeItem('tokenEAgenda')
     this.router.navigate(['/login'])
-    this.tokenValido = false
+    this.usuarioService.logoutUsuario()
 
   }
 }

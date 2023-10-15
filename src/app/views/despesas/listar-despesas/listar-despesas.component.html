@@ -1,3 +1,6 @@
+<app-modal tipo="Despesas" [opcoesFiltro]="opcoesFiltro" [onAbrirModalFiltro]="onAbrirModalFiltro"
+    (onEnviarFiltro)="filtrar($event)"></app-modal>
+
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5 flex-column">
@@ -6,19 +9,16 @@
                 <hr />
             </div>
 
-            <div class="d-flex align-items-center justify-content-start gap-2 mt-5">
+            <div class="d-grid d-md-flex gap-2 mt-5">
                 <a [routerLink]="['/despesas/inserir']" role="button" class="btn btn-primary me-md-1">
                     <i class="bi bi-plus-circle me-2"></i>
                     Nova Despesa
                 </a>
 
-                <div class="d-flex align-items-center gap-2">
-                    <label class="form-label text-primary fs-4 fw-semibold px-3 m-0">Filtrar:</label>
-                    <select (change)="onSelectChange($event)" class="form-select form-select-lg"
-                        aria-label="Large select example">
-                        <option *ngFor="let opcao of opcaoFiltro" [value]="opcao.valor">{{opcao.descricao}}</option>
-                    </select>
-                </div>
+                <button class="btn btn-md btn-outline-primary" (click)="abrirFiltro()"><i
+                        class="bi bi-filter-circle-fill"></i>
+                    Filtrar Despesas</button>
+
             </div>
 
             <div class="mt-5 row justify-content-center">

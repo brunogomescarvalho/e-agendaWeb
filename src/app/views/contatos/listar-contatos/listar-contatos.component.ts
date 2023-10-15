@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ListarContatosViewModel } from '../models/listar-contato.view-model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,11 +14,18 @@ import { StatusFavorito } from '../models/status-favorito.enum';
 })
 export class ListarContatosComponent implements OnInit {
   contatos?: ListarContatosViewModel[]
-  opcaoSelecionada: StatusFavorito = StatusFavorito.TODOS
+
+  opcaoSelecionada: StatusFavorito = StatusFavorito.Todos
+
+  opcoesFiltro: any[] = []
+
+  @Output() onAbrirModalFiltro = new EventEmitter()
 
   constructor(private router: Router, private toast: ToastrService, private route: ActivatedRoute, private service: ContatoService) { }
 
   ngOnInit(): void {
+    this.obterEnumFiltro()
+
     this.route.data.pipe(map((dados) => dados['contatos']))
       .subscribe({
         error: (err: HttpErrorResponse) => this.toast.error(err.message, 'Erro!'),
@@ -42,6 +49,10 @@ export class ListarContatosComponent implements OnInit {
     this.router.navigate(['/contatos/detalhes', contato.id])
   }
 
+  public abrirFiltro() {
+    this.onAbrirModalFiltro.emit(true)
+  }
+
   public alterarFavorito(contato: ListarContatosViewModel) {
     contato.favorito = !contato.favorito;
 
@@ -53,16 +64,16 @@ export class ListarContatosComponent implements OnInit {
           this.toast.success(`Contato ${status} favoritos`, 'Sucesso');
         }
       }).add(() => {
-        if (this.opcaoSelecionada == StatusFavorito.FAVORITOS) {
+        if (this.opcaoSelecionada == StatusFavorito.Favoritos) {
           const index = this.contatos?.findIndex(x => x.id === contato.id)!;
           this.contatos?.splice(index, 1);
         }
       })
   }
 
-  onRadioChange(event: any) {
+  filtrar(event: any) {
     this.contatos = []
-    this.opcaoSelecionada = event.target.value!;
+    this.opcaoSelecionada = event!;
 
     this.service.selecionarTodos(this.opcaoSelecionada)
       .subscribe({
@@ -70,13 +81,21 @@ export class ListarContatosComponent implements OnInit {
         next: (dados) => {
           this.contatos = dados
 
-          if (this.contatos?.length == 0 && this.opcaoSelecionada == StatusFavorito.FAVORITOS)
+          if (this.contatos?.length == 0 && this.opcaoSelecionada == StatusFavorito.Favoritos)
             this.toast.warning('Nenhum contato favorito até o momento')
 
-          else if (this.contatos?.length == 0 && this.opcaoSelecionada == StatusFavorito.TODOS)
+          else if (this.contatos?.length == 0 && this.opcaoSelecionada == StatusFavorito.Todos)
             this.toast.warning('Nenhum contato cadastrado até o momento')
         }
       })
+  }
+
+
+  private obterEnumFiltro() {
+    for (const item in StatusFavorito) {
+      if (isNaN(Number(StatusFavorito[item])))
+        this.opcoesFiltro.push({ descricao: StatusFavorito[item], valor: Number(item) });
+    }
   }
 
 }

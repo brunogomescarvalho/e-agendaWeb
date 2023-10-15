@@ -5,7 +5,8 @@ import { EditarTarefaComponent } from "../editar-tarefa/editar-tarefa.component"
 import { ExcluirTarefaComponent } from "../excluir-tarefa/excluir-tarefa.component";
 import { InserirTarefaComponent } from "../inserir-tarefa/inserir-tarefa.component";
 import { ListarTarefasComponent } from "../listar-tarefas/listar-tarefas.component";
-import { buscarTarefaPorIdResolve, listarTarefasResolve } from "./tarefa.resolver";
+import { buscarTarefaCompletaPorIdResolve, buscarTarefaPorIdResolve, listarTarefasResolve } from "./tarefa.resolver";
+import { DetalhesTarefaComponent } from "../detalhes-tarefa/detalhes-tarefa.component";
 
 const routes: Routes = [
     {
@@ -30,12 +31,12 @@ const routes: Routes = [
         resolve: { 'tarefa': buscarTarefaPorIdResolve },
         canActivate: [usuarioAutenticadoGuard]
     },
-    // {
-    //     path: 'detalhes/:id',
-    //     component: DetalhesDespesaComponent,
-    //     resolve: { 'despesa': visualizarDespesaCompletaResolve},
-    //     canActivate: [usuarioAutenticadoGuard]
-    // },
+    {
+        path: 'detalhes/:id',
+        component: DetalhesTarefaComponent,
+        resolve: { 'tarefa': buscarTarefaCompletaPorIdResolve },
+        canActivate: [usuarioAutenticadoGuard]
+    },
     {
         path: 'excluir/:id',
         component: ExcluirTarefaComponent,

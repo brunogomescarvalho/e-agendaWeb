@@ -16,7 +16,5 @@ export class ListarTarefasViewModel {
         this.prioridade = prioridade
         this.situacao = situacao
     }
-
-
-
 }
+

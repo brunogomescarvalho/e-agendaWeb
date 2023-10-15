@@ -11,7 +11,7 @@ export const formContatoResolve: ResolveFn<FormContatosViewModel> =
     };
 
 export const listarContatoResolve: ResolveFn<ListarContatosViewModel> =
-    () => { return inject(ContatoService).selecionarTodos(StatusFavorito.TODOS) }
+    () => { return inject(ContatoService).selecionarTodos(StatusFavorito.Todos) }
 
 export const contatoCompletoResolve: ResolveFn<FormContatosViewModel> =
     (route: ActivatedRouteSnapshot) => {

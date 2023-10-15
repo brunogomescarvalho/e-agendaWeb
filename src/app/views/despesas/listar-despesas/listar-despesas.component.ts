@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DespesasService } from '../service/despesas.service';
 import { ListarDespesasViewModel } from '../models/listar-despesas.view-model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FiltroDespesas } from '../models/filtroDespesa.enum';
+import { FiltroDespesas } from '../models/filtro-despesa.enum';
 
 @Component({
   selector: 'app-listar-despesas',
@@ -13,8 +13,11 @@ import { FiltroDespesas } from '../models/filtroDespesa.enum';
 })
 export class ListarDespesasComponent implements OnInit {
 
+  @Output() onAbrirModalFiltro = new EventEmitter()
+
   despesas!: ListarDespesasViewModel[]
-  opcaoFiltro: any[] = []
+
+  opcoesFiltro: any[] = []
 
   constructor(private service: DespesasService, private toast: ToastrService, private router: Router) { }
 
@@ -34,10 +37,14 @@ export class ListarDespesasComponent implements OnInit {
     this.router.navigate(['despesas/detalhes', despesa.id])
   }
 
-  onSelectChange(opcao: any) {
+  abrirFiltro() {
+    this.onAbrirModalFiltro.emit()
+  }
+
+  filtrar(opcao: any) {
     let observable!: Observable<ListarDespesasViewModel[]>
-    
-    switch (Number(opcao.target.value)) {
+
+    switch (Number(opcao)) {
       case 0: observable = this.service.selecionarTodos(); break
       case 1: observable = this.service.selecionarUltimos30Dias(); break
       case 2: observable = this.service.selecionarAntigas(); break
@@ -60,7 +67,7 @@ export class ListarDespesasComponent implements OnInit {
   private obterEnumFiltro() {
     for (const item in FiltroDespesas) {
       if (isNaN(Number(FiltroDespesas[item])))
-        this.opcaoFiltro.push({ descricao: FiltroDespesas[item], valor: Number(item) });
+        this.opcoesFiltro.push({ descricao: FiltroDespesas[item], valor: Number(item) });
     }
   }
 

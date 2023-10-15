@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs';
 import { FormTarefasViewModel } from '../models/tarefas/form-tarefas.view-model';
+import { StatusTarefa } from '../models/tarefas/status-tarefa.enum';
 
 
 @Injectable()
@@ -13,18 +14,18 @@ export class TarefasService {
   constructor(private httpService: HttpClient) { }
 
 
-  public selecionarTodos() {
+  public selecionarTodos(status: StatusTarefa) {
     return this.httpService
-      .get<any>(this.endpoint)
+      .get<any>(this.endpoint + `?status=${status}`)
       .pipe(map(res => res.dados),
-      catchError((erro: HttpErrorResponse) => erro.processarErro()))
+        catchError((erro: HttpErrorResponse) => erro.processarErro()))
   }
 
   public selecionarTarefaCompletaPorId(id: string) {
     return this.httpService
       .get<any>(this.endpoint + '/visualizacao-completa/' + id)
       .pipe(map(res => res.dados),
-      catchError((erro: HttpErrorResponse) => erro.processarErro()))
+        catchError((erro: HttpErrorResponse) => erro.processarErro()))
   }
 
   public selecionarPorId(id: string) {

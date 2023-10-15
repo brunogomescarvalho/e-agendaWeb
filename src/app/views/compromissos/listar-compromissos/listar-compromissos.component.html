@@ -13,11 +13,13 @@
 
             <!-- Barra de Ações -->
             <div class="d-grid d-md-flex gap-2 mt-5">
-                <a [routerLink]="['/compromissos/inserir']" role="button" class="btn btn-primary me-md-1">
-                    <i class="bi bi-plus-circle me-2"></i>
-                    Novo Compromisso
-                </a>
-                <button class="btn btn-lg btn-outline-primary" (click)="abrirFiltro()"><i
+              
+                    <a [routerLink]="['/compromissos/inserir']" role="button" class="btn btn-primary me-md-1">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Novo Compromisso
+                    </a>
+               
+                <button class="btn btn-md btn-outline-primary" (click)="abrirFiltro()"><i
                         class="bi bi-filter-circle-fill"></i> Filtrar Compromissos</button>
             </div>
         </div>

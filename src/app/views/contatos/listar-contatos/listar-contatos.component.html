@@ -1,14 +1,15 @@
+<app-modal tipo="Contatos" [opcoesFiltro]="opcoesFiltro" [onAbrirModalFiltro]="onAbrirModalFiltro"
+  (onEnviarFiltro)="filtrar($event)"></app-modal>
+
 <div class="container">
   <div class="row">
-    <!-- Conteúdo principal -->
     <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
-      <!-- Titulo -->
+
       <div class="text-md-start">
         <h1 class="fw-bold text-primary">Listar Contatos</h1>
         <hr />
       </div>
 
-      <!-- Barra de Ações -->
       <div class="d-grid d-md-flex gap-3 mt-5">
 
         <a [routerLink]="['/contatos/inserir']" role="button" class="btn btn-primary me-md-1">
@@ -16,17 +17,8 @@
           Novo Contato
         </a>
 
-        <div class="d-flex align-items-center gap-2">
-          <label class="form-label text-primary fs-4 fw-semibold px-3">Filtrar:</label>
-
-          <input name="statusFavorito" type="radio" [value]="0" (change)="onRadioChange($event)" checked />
-          <span class="fs-5 text-secondary fw-semibold"> Todos </span>
-
-          <input name="statusFavorito" type="radio" [value]="1" (change)="onRadioChange($event)" />
-          <span class="fs-5 text-secondary fw-semibold"> Favoritos</span>
-
-
-        </div>
+        <button class="btn btn-md btn-outline-primary" (click)="abrirFiltro()"><i class="bi bi-filter-circle-fill"></i>
+          Filtrar Contatos</button>
       </div>
 
       <div class="mt-5 row justify-content-center">

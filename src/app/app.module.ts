@@ -8,7 +8,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { DashboardModule } from './views/dashboard/dashboard.module';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
-import { LoginModule } from './views/login/login.module';
 import { TokenInterceptor } from './services/interceptor/token.interceptor';
 import './extensions/form-group.extension'
 import './extensions/http-error-response.extension'

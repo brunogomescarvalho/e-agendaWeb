@@ -11,9 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CardItensTarefaComponent } from './componentes/card-itens-tarefa/card-itens-tarefa.component';
 import { TarefasService } from './service/tarefas.service';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
-
-
-
+import { DetalhesTarefaComponent } from './detalhes-tarefa/detalhes-tarefa.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
@@ -24,14 +23,15 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     FormularioTarefaComponent,
     CardTarefaComponent,
     CardItensTarefaComponent,
+    DetalhesTarefaComponent
     
-
   ],
   imports: [
     CommonModule,
     TarefasRouterModule,
     ReactiveFormsModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    CoreModule
   ],
   providers:[
     TarefasService

@@ -12,6 +12,8 @@ import 'src/app/extensions/form-group.extension';
 import { ContatoRouterModule } from './router-module/contatos-router.module';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetalhesContatoComponent } from './detalhes-contato/detalhes-contato.component';
+import { ModalComponent } from 'src/app/core/componentes/modal/modal.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 
@@ -23,18 +25,18 @@ import { DetalhesContatoComponent } from './detalhes-contato/detalhes-contato.co
     ExcluirContatoComponent,
     CardContatoComponent,
     FormularioContatoComponent,
-    DetalhesContatoComponent
+    DetalhesContatoComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     ContatoRouterModule,
-    NgbTooltipModule
-
+    NgbTooltipModule,
+    CoreModule
   ],
   providers: [
     ContatoService,
-
+  
   ]
 })
 export class ContatosModule { }

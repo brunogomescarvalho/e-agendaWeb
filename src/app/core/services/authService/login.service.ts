@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 
 import { catchError, tap, throwError } from 'rxjs';
-import { LoginUsuarioViewModel } from '../../views/login/models/login.view-model';
+import { LoginUsuarioViewModel } from '../../../views/login/models/login.view-model';
 import { TokenUsuario } from 'src/app/views/login/models/token.view-model';
 
 @Injectable()

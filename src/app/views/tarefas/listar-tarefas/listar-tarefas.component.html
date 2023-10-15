@@ -1,3 +1,6 @@
+<app-modal tipo="Tarefas" [opcoesFiltro]="opcoesFiltro" [onAbrirModalFiltro]="onAbrirModalFiltro"
+    (onEnviarFiltro)="filtrar($event)"></app-modal>
+
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
@@ -13,14 +16,17 @@
                     <i class="bi bi-plus-circle me-2"></i>
                     Nova Tarefa
                 </a>
-            </div>
 
+                <button class="btn btn-md btn-outline-primary" (click)="abrirFiltro()"><i
+                        class="bi bi-filter-circle-fill"></i>
+                    Filtrar Tarefas</button>
+            </div>
         </div>
 
         <div class="mt-5 row justify-content-center">
             <div class="col-lg-3 col-md-6 col-sm-10 " *ngFor="let item of tarefas">
-                <app-card-tarefa (onEditarTarefa)="editar($event)" (onExcluirTarefa)="excluir($event)" (onDetalhesTarefa)="detalhes($event)"
-                    [tarefa]="item"></app-card-tarefa>
+                <app-card-tarefa (onEditarTarefa)="editar($event)" (onExcluirTarefa)="excluir($event)"
+                    (onDetalhesTarefa)="detalhes($event)" [tarefa]="item"></app-card-tarefa>
             </div>
         </div>
 

@@ -3,7 +3,7 @@
         <h5 class="card-title">Título: {{ item.titulo }}</h5>
     </div>
     <div class="card-body pb-0">
-        <p class='text-primary fw-semibold'>Status: <span class="px-4" [class]= "item.concluido? 'text-success': 'text-danger'">{{item.concluido? 'Concluído':'Pendente'}}</span></p>
+        <p class='text-primary fw-semibold'>Situação: <span class="px-4" [class]= "item.concluido? 'text-success': 'text-danger'">{{item.concluido? 'Concluído':'Pendente'}}</span></p>
     </div>
     <hr class=" m-0">
     <div class="d-flex justify-content-center gap-3 m-2">
