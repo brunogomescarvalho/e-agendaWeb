@@ -89,7 +89,7 @@ export class FormularioCompromissoComponent implements OnInit {
     const dataSelecionada = new Date(control.value);
     const hoje = new Date();
 
-    if (dataSelecionada < hoje) {
+    if (dataSelecionada.getUTCDate() < hoje.getUTCDate()) {
       return { 'dataInvalida': true };
     }
 
