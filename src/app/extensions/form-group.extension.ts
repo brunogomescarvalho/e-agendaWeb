@@ -39,6 +39,9 @@ FormGroup.prototype.validate = function () {
             
             else if (control.errors!['letraCaixaBaixa']) 
                 msg = `*A senha precisa ter no mínimo '1' letra 'Minúscula'`
+
+                else if (control.errors!['horaInvalida']) 
+                msg = `*A hora de término precisa ser maior que a inicial`
             
             else
                 msg = `* O campo '${item}' é obrigatório`

@@ -53,8 +53,7 @@
                 <div class="form-group mb-3 position-relative row">
                     <div class="col-6">
                         <label class="form-label">Hora de Início:</label>
-                        <input formControlName="horaInicio" class="form-control" type="time"
-                            placeholder="Digite o telefone do contato" [ngClass]="{
+                        <input formControlName="horaInicio" class="form-control" type="time" [ngClass]="{
                                 'is-valid':form.campoValido('horaInicio') == true, 
                                 'is-invalid':form.campoValido('horaInicio') == false}" />
                     </div>
@@ -62,9 +61,9 @@
                     <div class="col">
                         <label class="form-label">Hora de Término:</label>
                         <input formControlName="horaTermino" class="form-control" type="time"
-                            placeholder="Digite o telefone do contato" [ngClass]="{
-                                'is-valid':form.campoValido('horaTermino') == true, 
-                                'is-invalid':form.campoValido('horaTermino') == false}" />
+                            [ngClass]="{
+                            'is-valid':form.campoValido('horaTermino') == true, 
+                        'is-invalid':form.campoValido('horaTermino') == false || form.campoValido('horaTermino') == null}" />
                     </div>
                 </div>
                 <div class="form-group mb-3 position-relative">
