@@ -2,7 +2,7 @@
     <div class="card-header text-bg-primary">
         <h5 class="card-title">Título: {{ item.titulo }}</h5>
     </div>
-    <div class="card-body pb-0">
+    <div class="card-body pb-0" *ngIf="cardEditar">
         <p class='text-primary fw-semibold'>Situação: <span class="px-4" [class]= "item.concluido? 'text-success': 'text-danger'">{{item.concluido? 'Concluído':'Pendente'}}</span></p>
     </div>
     <hr class=" m-0">
@@ -10,7 +10,7 @@
         <button type="button" class="mx-3 btn btn-outline-danger" (click)="removerItem(item)">
             <i class="bi bi-trash-fill"></i>
         </button>
-        <button (click)="finalizar(item)" type="button" class="btn btn-outline-primary" aria-label="Editar"
+        <button *ngIf="cardEditar" (click)="finalizar(item)" type="button" class="btn btn-outline-primary" aria-label="Editar"
             ngbTooltip="Finalizar" placement="bottom">
             <i class="bi bi-check-circle-fill"></i>
         </button>

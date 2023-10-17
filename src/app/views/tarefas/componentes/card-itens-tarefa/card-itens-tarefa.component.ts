@@ -7,11 +7,13 @@ import { ItemTarefaViewModel } from '../../models/itens-tarefas/item-tarefa.view
   styleUrls: ['./card-itens-tarefa.component.css']
 })
 export class CardItensTarefaComponent {
-  @Input() item!: ItemTarefaViewModel
+  @Input({required:true}) item!: ItemTarefaViewModel
 
   @Output() onFinalizarItem = new EventEmitter()
 
   @Output() onExcluirItem = new EventEmitter()
+
+  @Input({required:true}) cardEditar!:boolean
 
 
   finalizar(item: ItemTarefaViewModel) {
