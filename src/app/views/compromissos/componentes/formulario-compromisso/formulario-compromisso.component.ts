@@ -30,8 +30,8 @@ export class FormularioCompromissoComponent implements OnInit {
     this.form = this.formBuilder.group({
       assunto: new FormControl('', [Validators.required]),
       tipoLocal: new FormControl(0, [Validators.required]),
-      local: new FormControl(null, []),
-      link: new FormControl(null, [Validators.required]),
+      local: new FormControl(null, [Validators.required, this.validarLocal]),
+      link: new FormControl(null, [Validators.required, this.validarLocal]),
       data: new FormControl(null, [Validators.required, this.validarData]),
       horaInicio: new FormControl('08:00', [Validators.required, this.validarHoraInicial]),
       horaTermino: new FormControl('09:00', [Validators.required, this.validarHoraFinal]),
@@ -94,7 +94,7 @@ export class FormularioCompromissoComponent implements OnInit {
 
     const hoje = new Date();
 
-    if (dataSelecionada < hoje) {
+    if (dataSelecionada <= hoje) {
       return { 'dataInvalida': true };
     }
 
@@ -117,6 +117,23 @@ export class FormularioCompromissoComponent implements OnInit {
 
     if (horaInicial > horaTermino) {
       return { 'horaInvalida': true };
+    }
+    return null
+  }
+
+  validarLocal(control: FormControl): { [key: string]: boolean } | null {
+    const tipoLocal = control.parent?.get('tipoLocal')?.value
+    const link = control.parent?.get('link')
+    const local = control.parent?.get('local')
+
+    if (tipoLocal == TipoLocal.PRESENCIAL) {
+      link!.clearValidators();
+      link!.updateValueAndValidity();
+    }
+
+    else if (tipoLocal == TipoLocal.REMOTO) {
+      local!.clearValidators();
+      local!.updateValueAndValidity();
     }
     return null
   }

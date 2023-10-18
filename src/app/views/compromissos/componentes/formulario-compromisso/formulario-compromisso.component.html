@@ -31,7 +31,7 @@
                     <label class="form-label">Link:</label>
                     <input formControlName="link" class="form-control" type="text"
                         placeholder="Digite o link do compromisso" [ngClass]="{
-                            'is-valid':form.campoValido('link') == true, 
+                            'is-valid':form.campoValido('link') == true && form.value.link != null, 
                             'is-invalid':form.campoValido('link') == false}" />
                 </div>
 
