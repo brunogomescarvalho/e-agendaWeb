@@ -22,15 +22,14 @@
                         {{tarefa.dataCriacao|date:'dd/MM/yyyy'}}
                     </dd>
 
-                    <div *ngIf="tarefa.dataConclusao">
-                        <dt class="col-md-4">
-                            <label class="control-label">Data Conclusão:</label>
-                        </dt>
-                        <dd class="col-md-8">
-                            {{ tarefa.dataConclusao|date:'dd/MM/yyyy'}}
-                        </dd>
-                    </div>
-                    
+                    <dt class="col-md-4" *ngIf="tarefa.dataConclusao">
+                        <label class="control-label">Data Conclusão:</label>
+                    </dt>
+
+                    <dd class="col-md-8" *ngIf="tarefa.dataConclusao">
+                        {{ tarefa.dataConclusao|date:'dd/MM/yyyy'}}
+                    </dd>
+
                     <dt class="col-md-4">
                         <label class="control-label">Quantidade de itens:</label>
                     </dt>

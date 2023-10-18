@@ -102,7 +102,7 @@ export class FormularioCompromissoComponent implements OnInit {
   }
 
   validarHoraInicial(control: FormControl): { [key: string]: boolean } | null {
-    let data = control.parent?.get('data') as FormControl
+    const data = control.parent?.get('data') as FormControl
     const horaTermino = control.parent?.get('horaTermino') as FormControl
 
     horaTermino?.updateValueAndValidity()

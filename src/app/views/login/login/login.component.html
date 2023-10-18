@@ -1,36 +1,46 @@
-<div class="row mx-4 mt-4 justify-content-center">
-    <div class="col-sm-10 col-md-6 col-lg-4">
-        <h2 class="text-primary">Login</h2>
-        <P>Efetue login ou cadastre-se para acessar o <span class="text-primary fs-4 fw-semibold">e-Agenda</span></P>
-        <hr>
-    </div>
+<section class="mt-5">
+    <div class="container ">
+        <div class="row d-flex">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    class="img-fluid" />
+            </div>
+            <div class="col-sm-10 col-md-6 col-lg-4">
+                <h2 class="text-primary">Login</h2>
+                <P>Efetue login ou cadastre-se para acessar o <span
+                        class="text-primary fs-4 fw-semibold">e-Agenda</span>
+                </P>
+                <hr>
 
-</div>
+                <div class="col">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form">
 
-<div class="container d-flex justify-content-center mt-4">
-
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form">
-
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input formControlName="email" type="text" class="form-control" id="staticEmail" [ngClass]="{
+                        <div class="mb-3 row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input formControlName="email" type="text" class="form-control" id="staticEmail"
+                                    [ngClass]="{
                     'is-valid':form.campoValido('email') == true, 
                     'is-invalid':form.campoValido('email') == false}" />
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Senha</label>
-            <div class="col-sm-10">
-                <input type="password" formControlName="senha" class="form-control" id="inputPassword" [ngClass]="{
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Senha</label>
+                            <div class="col-sm-10">
+                                <input type="password" formControlName="senha" class="form-control" id="inputPassword"
+                                    [ngClass]="{
                     'is-valid':form.campoValido('senha') == true, 
                     'is-invalid':form.campoValido('senha') == false}" />
+                            </div>
+                        </div>
+                        <div class="mt-4  col-sm-10">
+                            <button class="btn btn-success mx-3" type="submit">Logar</button>
+                            <button routerLink="/registro" class="btn btn-primary" type="button">Cadastre-se</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="mt-4  col-sm-10">
-            <button class="btn btn-success mx-3" type="submit">Logar</button>
-            <button routerLink="/registro" class="btn btn-primary" type="button">Cadastrar-se</button>
-        </div>
-
-    </form>
-</div>
+    </div>
+</section>
