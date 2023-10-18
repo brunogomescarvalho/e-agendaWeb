@@ -55,7 +55,7 @@ export class FormularioCompromissoComponent implements OnInit {
     if (this.compromisso) {
       const compromissoFormatado = {
         ...this.compromisso,
-        data: this.datePipe.transform(this.compromisso.data, 'yyyy-MM-dd')
+        data: this.datePipe.transform(this.compromisso.data, 'yyyy-MM-dd', 'UTC')
       };
 
       this.form.patchValue(compromissoFormatado);
