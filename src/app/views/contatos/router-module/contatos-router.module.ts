@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { usuarioAutenticadoGuard } from "src/app/services/guards/usuario-autenticado.guard";
+import { usuarioAutenticadoGuard } from "src/app/core/auth/guards/usuario-autenticado.guard";
 import { EditarContatoComponent } from "../editar-contato/editar-contato.component";
 import { ExcluirContatoComponent } from "../excluir-contato/excluir-contato.component";
 

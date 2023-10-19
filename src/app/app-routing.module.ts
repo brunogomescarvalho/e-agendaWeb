@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { LoginComponent } from './views/login/login/login.component';
-import { usuarioAutenticadoGuard, usuarioNaoAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
+import { usuarioAutenticadoGuard, usuarioNaoAutenticadoGuard } from './core/auth/guards/usuario-autenticado.guard';
 
 
 const routes: Routes = [

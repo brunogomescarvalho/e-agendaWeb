@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { InserirDespesaComponent } from "../inserir-despesa/inserir-despesa.component";
-import { usuarioAutenticadoGuard } from "src/app/services/guards/usuario-autenticado.guard";
+import { usuarioAutenticadoGuard } from "src/app/core/auth/guards/usuario-autenticado.guard";
 import { ListarDespesasComponent } from "../listar-despesas/listar-despesas.component";
 import { selecionarDespesasPorId, selecionarTodasDespesasResolve, visualizarDespesaCompletaResolve } from "./resolver-despesas";
 import { listarCategoriasResolve } from "../../categorias/router-module/resolvers-categorias";

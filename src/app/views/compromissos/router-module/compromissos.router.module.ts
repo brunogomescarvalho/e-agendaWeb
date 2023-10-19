@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { usuarioAutenticadoGuard } from "src/app/services/guards/usuario-autenticado.guard";
+import { usuarioAutenticadoGuard } from "src/app/core/auth/guards/usuario-autenticado.guard";
 import { listarContatoResolve } from "../../contatos/router-module/contato-resolver";
 import { EditarCompromissosComponent } from "../editar-compromissos/editar-compromissos.component";
 import { ExcluirCompromissoComponent } from "../excluir-compromisso/excluir-compromisso.component";

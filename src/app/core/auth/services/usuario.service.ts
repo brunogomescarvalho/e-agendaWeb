@@ -40,6 +40,4 @@ export class UsuarioService {
       this.logarUsario(this.locaStorage.obterUsuarioLogado())
   }
 
-
-
 }
