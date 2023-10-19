@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { LoginUsuarioViewModel } from '../models/login.view-model';
-import { UsuarioService } from 'src/app/core/services/usuarioService/usuario.service';
-import { LoginService } from 'src/app/core/services/authService/login.service';
+import { UsuarioService } from 'src/app/core/auth/services/usuario.service';
 import { TokenUsuario } from '../models/token.view-model';
+import { AuthService } from 'src/app/core/auth/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,11 @@ import { TokenUsuario } from '../models/token.view-model';
 export class LoginComponent implements OnInit {
   form!: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private service: LoginService, private toast: ToastrService, private router: Router, private usuarioService: UsuarioService) { }
+  constructor(private formBuilder: FormBuilder,
+    private service: AuthService,
+    private toast: ToastrService,
+    private router: Router,
+    private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

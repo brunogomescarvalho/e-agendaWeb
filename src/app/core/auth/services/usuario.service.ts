@@ -1,16 +1,16 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, shareReplay } from 'rxjs';
 import { TokenUsuario } from 'src/app/views/login/models/token.view-model';
+import { LocalStorageService } from './localStorage.service';
 
 @Injectable()
 export class UsuarioService {
 
-  constructor() {
-    if (this.tokenValido())
-      this.logarUsario(this.obterUsuarioLogado())
-  }
+  usuarioSubject: BehaviorSubject<TokenUsuario | null>
 
-  usuarioSubject = new BehaviorSubject<TokenUsuario | null>(null)
+  constructor(private locaStorage: LocalStorageService) {
+    this.usuarioSubject = new BehaviorSubject<TokenUsuario | null>(null)
+  }
 
   public logarUsario(usuario: TokenUsuario) {
     this.usuarioSubject.next(usuario)
@@ -25,7 +25,7 @@ export class UsuarioService {
   }
 
   public tokenValido(): boolean {
-    const token = JSON.parse(localStorage.getItem('tokenEAgenda')!)
+    const token = this.locaStorage.obterUsuarioLogado()
 
     if (!token) return false
 
@@ -35,7 +35,11 @@ export class UsuarioService {
 
   }
 
-  public obterUsuarioLogado(): TokenUsuario {
-    return JSON.parse(localStorage.getItem('tokenEAgenda')!) as TokenUsuario
+  public logarUsuarioSalvo() {
+    if (this.tokenValido())
+      this.logarUsario(this.locaStorage.obterUsuarioLogado())
   }
+
+
+
 }

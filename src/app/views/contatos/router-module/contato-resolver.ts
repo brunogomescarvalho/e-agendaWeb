@@ -5,16 +5,18 @@ import { ContatoService } from "../service/contato.service";
 import { ListarContatosViewModel } from "../models/listar-contato.view-model";
 import { StatusFavorito } from "../models/status-favorito.enum";
 
-export const formContatoResolve: ResolveFn<FormContatosViewModel> =
-    (route: ActivatedRouteSnapshot) => {
+export const formContatoResolve:
+    ResolveFn<FormContatosViewModel> = (route: ActivatedRouteSnapshot) => {
         return inject(ContatoService).selecionarPorId(route.paramMap.get('id')!);
     };
 
-export const listarContatoResolve: ResolveFn<ListarContatosViewModel> =
-    () => { return inject(ContatoService).selecionarTodos(StatusFavorito.Todos) }
+export const listarContatoResolve:
+    ResolveFn<ListarContatosViewModel> = () => {
+        return inject(ContatoService).selecionarTodos(StatusFavorito.Todos)
+    }
 
-export const contatoCompletoResolve: ResolveFn<FormContatosViewModel> =
-    (route: ActivatedRouteSnapshot) => {
+export const contatoCompletoResolve:
+    ResolveFn<FormContatosViewModel> = (route: ActivatedRouteSnapshot) => {
         return inject(ContatoService).selecionarContatoCompletoPorId(route.paramMap.get('id')!);
     };
 

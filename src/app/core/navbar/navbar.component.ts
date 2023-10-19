@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from '../services/usuarioService/usuario.service';
+import { UsuarioService } from '../auth/services/usuario.service';
 import { Observable } from 'rxjs';
 import { TokenUsuario } from 'src/app/views/login/models/token.view-model';
+import { AuthService } from '../auth/services/auth.service';
 
 
 @Component({
@@ -14,19 +15,17 @@ export class NavbarComponent implements OnInit {
 
   estaColapsada: boolean = true;
 
-  usuarioLogado!: Observable<TokenUsuario | null>;
+  usuarioLogado$!: Observable<TokenUsuario | null>;
 
-  constructor(private router: Router, private usuarioService: UsuarioService) { }
-  
+  constructor(private router: Router, private usuarioService: UsuarioService, private authService: AuthService) { }
+
   ngOnInit(): void {
-    this.usuarioLogado = this.usuarioService.usuarioLogado()
+    this.usuarioLogado$ = this.usuarioService.usuarioLogado()
   }
 
   sair() {
 
-    localStorage.removeItem('tokenEAgenda')
-    this.router.navigate(['/login'])
-    this.usuarioService.logoutUsuario()
-
+    this.authService.logout()
+      .subscribe(() => this.router.navigate(['/login']))
   }
 }

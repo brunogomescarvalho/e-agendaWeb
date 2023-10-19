@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UsuarioService } from 'src/app/core/services/usuarioService/usuario.service';
+import { UsuarioService } from 'src/app/core/auth/services/usuario.service';
 
 
 

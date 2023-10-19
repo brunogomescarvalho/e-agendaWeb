@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal.component.css'],
  
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit , OnDestroy {
 
   @ViewChild('content', { static: true }) contentTemplate!: TemplateRef<any>
 
@@ -22,6 +22,7 @@ export class ModalComponent implements OnInit {
   opcaoSelecionada!: number
 
   constructor(private modalService: NgbModal) { }
+ 
 
   ngOnInit(): void {
     this.onAbrirModalFiltro?.asObservable().subscribe(() => {
@@ -32,6 +33,11 @@ export class ModalComponent implements OnInit {
   filtrar() {
     this.onEnviarFiltro.emit(this.opcaoSelecionada);
     this.modalService.dismissAll()
+   
+  }
+
+  ngOnDestroy(): void {
+    this.onAbrirModalFiltro.unsubscribe()
   }
 }
 

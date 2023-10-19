@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginService } from './services/authService/login.service';
-import { UsuarioService } from './services/usuarioService/usuario.service';
-import { FormsModule } from '@angular/forms';
+
+import { UsuarioService } from './auth/services/usuario.service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -14,13 +14,14 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    AuthModule
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    AuthModule
   ],
   providers: [
-    LoginService,
     UsuarioService
   ]
 })

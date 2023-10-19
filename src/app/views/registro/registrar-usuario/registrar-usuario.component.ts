@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UsuarioService } from 'src/app/core/services/usuarioService/usuario.service';
-import { RegistroService } from '../service/registro.service';
+import { UsuarioService } from 'src/app/core/auth/services/usuario.service';
 import { FormRegistroUsuarioViewModel } from '../models/form-registro.view-model';
+import { AuthService } from 'src/app/core/auth/services/auth.service';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -14,7 +14,12 @@ import { FormRegistroUsuarioViewModel } from '../models/form-registro.view-model
 export class RegistrarUsuarioComponent implements OnInit {
   form!: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private service: RegistroService, private toast: ToastrService, private router: Router, private usuarioService: UsuarioService) { }
+  constructor
+  (private formBuilder: FormBuilder, 
+    private service: AuthService, 
+    private toast: ToastrService, 
+    private router: Router, 
+    private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({

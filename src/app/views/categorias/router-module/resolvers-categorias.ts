@@ -5,13 +5,17 @@ import { ListarCategoriasViewModel } from "../models/listar-categorias-view-mode
 import { FormCategoriaViewModel } from "../models/form-categoria.view-model";
 import { VisualizarCategoriaViewModel } from "../models/visualizar-categoria.view-model";
 
-export const listarCategoriasResolve: ResolveFn<[ListarCategoriasViewModel]> =
-    () => { return inject(CategoriaService).selecionarTodos() };
+export const listarCategoriasResolve:
+    ResolveFn<[ListarCategoriasViewModel]> = () => {
+        return inject(CategoriaService).selecionarTodos()
+    };
 
-export const buscarCategoriaPorIdResolve: ResolveFn<[FormCategoriaViewModel]> = (route: ActivatedRouteSnapshot) => {
-    return inject(CategoriaService).selecionarPorId(route.params['id'])
-}
+export const buscarCategoriaPorIdResolve:
+    ResolveFn<[FormCategoriaViewModel]> = (route: ActivatedRouteSnapshot) => {
+        return inject(CategoriaService).selecionarPorId(route.params['id'])
+    }
 
-export const buscarCategoriaCompletaPorIdResolve: ResolveFn<[VisualizarCategoriaViewModel]> = (route: ActivatedRouteSnapshot) => {
-    return inject(CategoriaService).selecionarCategoriaCompletaPorId(route.params['id'])
-}
+export const buscarCategoriaCompletaPorIdResolve:
+    ResolveFn<[VisualizarCategoriaViewModel]> = (route: ActivatedRouteSnapshot) => {
+        return inject(CategoriaService).selecionarCategoriaCompletaPorId(route.params['id'])
+    }

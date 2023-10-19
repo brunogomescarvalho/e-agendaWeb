@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { TokenInterceptor } from './services/interceptor/token.interceptor';
 import './extensions/form-group.extension'
 import './extensions/http-error-response.extension';
+import { UsuarioService } from './core/auth/services/usuario.service';
+
+export function logarUsuarioSalvoFactory(usuarioService: UsuarioService) {
+  return () => usuarioService.logarUsuarioSalvo()
+}
 
 @NgModule({
   declarations: [
@@ -24,7 +29,7 @@ import './extensions/http-error-response.extension';
     DashboardModule,
     CoreModule,
     HttpClientModule,
-    
+
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-center',
@@ -34,6 +39,12 @@ import './extensions/http-error-response.extension';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
+    multi: true
+  },
+  {
+    provide: APP_INITIALIZER,
+    useFactory: logarUsuarioSalvoFactory,
+    deps: [UsuarioService],
     multi: true
   }],
   bootstrap: [AppComponent]

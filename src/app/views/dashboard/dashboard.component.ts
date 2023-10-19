@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/core/services/usuarioService/usuario.service';
+import { UsuarioService } from 'src/app/core/auth/services/usuario.service';
 import { TokenUsuario } from '../login/models/token.view-model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +11,16 @@ import { TokenUsuario } from '../login/models/token.view-model';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router, private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService) { }
 
-  usuarioLogado?: string;
-
+  usuarioLogado$?: Observable<TokenUsuario | null>;
 
   ngOnInit() {
-    if (!this.usuarioService.tokenValido()) {
-      this.router.navigate(['/login'])
-    }
-    else {
-      this.usuarioLogado = this.usuarioService.obterUsuarioLogado().usuario.nome
-    }
+
+    this.usuarioLogado$ = this.usuarioService.usuarioLogado()
+
   }
+
 }
 
 
