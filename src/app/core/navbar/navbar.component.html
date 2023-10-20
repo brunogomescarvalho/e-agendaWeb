@@ -2,10 +2,16 @@
     <div class="container">
         <a class="navbar-brand fw-semibold" routerLink="/dashboard">e-Agenda<i
                 class="bi bi-clipboard2-check-fill text-primary ms-2"></i></a>
+
         <button (click)="estaColapsada = !estaColapsada" class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" [ngbCollapse]="estaColapsada == true">
+
+        <div *ngIf=(mostrarCarregamento$|async) class="spinner-border text-danger mx-4 " role="status" style="position: fixed; top: 15%; left: 80%; margin: auto; z-index: 1000;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+
+        <div class=" mx-4 collapse navbar-collapse" [ngbCollapse]="estaColapsada == true">
             <div class="links w-100 text-center">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -29,9 +35,7 @@
                             routerLink="/tarefas/listar">Tarefas</a>
                     </li>
 
-                    <div *ngIf=(mostrarCarregamento$|async) class="spinner-border text-primary mx-4 " role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
+                   
                 </ul>
             </div>
 
@@ -39,7 +43,8 @@
                 <button type="button" (click)="sair()" class="btn btn-outline-primary">Sair</button>
             </div>
         </div>
-
     </div>
+
+   
 
 </nav>
