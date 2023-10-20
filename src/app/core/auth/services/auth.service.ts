@@ -19,7 +19,15 @@ export class AuthService {
 
   public registrar(despesa: FormRegistroUsuarioViewModel) {
     return this.httpService.post(this.endpoint + 'registrar', despesa)
-      .pipe(catchError((erro: HttpErrorResponse) => erro.processarErro()))
+      .pipe(
+        tap((res: any) => {
+          if (res.sucesso == true) {
+            this.localStorage.salvarToken(res)
+          }
+        }),
+        catchError((err: HttpErrorResponse) =>
+          this.processarErro(err)
+        ))
 
   }
 

@@ -7,6 +7,7 @@ import { FormRegistroUsuarioViewModel } from '../models/form-registro.view-model
 import { AuthService } from 'src/app/core/auth/services/auth.service';
 import { Observable } from 'rxjs';
 import { LoadingService } from 'src/app/shared/loading/loading.service';
+import { TokenUsuario } from '../../login/models/token.view-model';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -15,7 +16,7 @@ import { LoadingService } from 'src/app/shared/loading/loading.service';
 })
 export class RegistrarUsuarioComponent implements OnInit {
   form!: FormGroup
-
+  submitDesabilitado = false
   mostrarCarregamento$!: Observable<boolean>
 
   constructor
@@ -23,6 +24,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       private service: AuthService,
       private toast: ToastrService,
       private router: Router,
+      private usuarioService:UsuarioService,
       private loadingService: LoadingService) { }
 
   ngOnInit(): void {
@@ -41,17 +43,23 @@ export class RegistrarUsuarioComponent implements OnInit {
       this.toast.error(this.form.validate().join("<br/>"), 'Erros ao Enviar Formulário', { enableHtml: true });
       return;
     }
-
+    this.submitDesabilitado = true
     let novoUsuario: FormRegistroUsuarioViewModel = this.form.value
     this.service.registrar(novoUsuario)
       .subscribe({
         error: (erro: Error) => {
-          this.router.navigate(['/registro'])
-          this.toast.error(erro.message)
+          this.toast.error(erro.message),
+          this.submitDesabilitado = false
         },
-        next: () => {
+        next: (usuario) => {
+          const tokenUsuario: TokenUsuario = {
+            chave: usuario.dados.chave,
+            usuario: usuario.dados.usuarioToken,
+            dataExpiracao: usuario.dados.dataExpiracao,
+          }
+          this.usuarioService.logarUsario(tokenUsuario)
           this.toast.success("Usuário cadastrado com sucesso!", "Sucesso")
-          this.router.navigate(['/login'])
+          this.router.navigate(['/dashboard'])
         }
       })
   }

@@ -7,9 +7,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div *ngIf=(mostrarCarregamento$|async) class="spinner-border text-primary mx-4 " role="status" style="position: fixed; top: 15%; left: 80%; margin: auto; z-index: 1000;">
+        <div *ngIf=(mostrarCarregamento$|async) class="spinner-border text-primary mx-4 " role="status"
+            style="position: fixed; top: 15%; left: 80%; margin: auto; z-index: 1000;">
             <span class="visually-hidden">Loading...</span>
-          </div>
+        </div>
 
         <div class=" mx-4 collapse navbar-collapse" [ngbCollapse]="estaColapsada == true">
             <div class="links w-100 text-center">
@@ -34,8 +35,6 @@
                         <a class="nav-link text-primary" routerLinkActive="fw-semibold"
                             routerLink="/tarefas/listar">Tarefas</a>
                     </li>
-
-                   
                 </ul>
             </div>
 
@@ -44,7 +43,5 @@
             </div>
         </div>
     </div>
-
-   
 
 </nav>

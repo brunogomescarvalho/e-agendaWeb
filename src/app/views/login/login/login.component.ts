@@ -16,7 +16,7 @@ import { LoadingService } from 'src/app/shared/loading/loading.service';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup
-
+  submitDesabilitado = false
   mostrarCarregamento$!: Observable<boolean>
 
   constructor(private formBuilder: FormBuilder,
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.mostrarCarregamento$ = this.loadingService.estaCarregando()
 
-
     this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       senha: new FormControl('', [Validators.required])
@@ -38,10 +37,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      this.submitDesabilitado = true
       let usuario = new LoginUsuarioViewModel(this.form.value.email, this.form.value.senha)
       this.service.autenticar(usuario)
         .subscribe({
-          error: (erro: Error) => this.toast.error(erro.message, 'Usuário não encontrado'),
+          error: (erro: Error) => {
+            this.toast.error(erro.message, 'Usuário não encontrado'),
+            this.submitDesabilitado = false
+          },
           next: (usuario) => {
             const tokenUsuario: TokenUsuario = {
               chave: usuario.dados.chave,

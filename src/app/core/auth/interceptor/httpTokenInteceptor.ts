@@ -9,8 +9,6 @@ export const interceptorToken: HttpInterceptorFn = (request: HttpRequest<unknown
 
     if (!inject(UsuarioService).tokenValido()) {
 
-        inject(Router).navigate(['/login'])
-
         return next(request);
     }
 

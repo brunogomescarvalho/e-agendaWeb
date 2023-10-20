@@ -34,11 +34,10 @@
                             </div>
                         </div>
                         <div class="mt-4  col-sm-10">
-                            <button class="btn btn-success mx-3" type="submit">Logar</button>
+                            <button class="btn btn-success mx-3" type="submit" [disabled]="submitDesabilitado">
+                                <span  *ngIf=(mostrarCarregamento$|async)  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  
+                              Entrar</button>
                             <button routerLink="/registro" class="btn btn-primary" type="button">Cadastre-se</button>
-                            <div *ngIf=(mostrarCarregamento$|async) class="spinner-border text-primary mx-3"
-                                role="status">
-                            </div>
                         </div>
 
                     </form>

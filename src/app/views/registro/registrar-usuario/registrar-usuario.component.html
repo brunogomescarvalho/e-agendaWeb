@@ -45,12 +45,11 @@
 
                     </div>
                     <div class="mt-4  mb-3">
-                        <button class="btn btn-success mx-3" type="submit">Cadastrar-se</button>
+                        <button class="btn btn-success mx-3" type="submit" [disabled]="submitDesabilitado">
+                            <span *ngIf=(mostrarCarregamento$|async) class="spinner-border spinner-border-sm"
+                                role="status" aria-hidden="true"></span>
+                            Cadastrar-se</button>
                         <button routerLink="/login" class="btn btn-primary" type="button">Voltar</button>
-
-                        <div *ngIf=(mostrarCarregamento$|async) class="spinner-border text-primary mx-4 " role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
                     </div>
                 </form>
             </div>

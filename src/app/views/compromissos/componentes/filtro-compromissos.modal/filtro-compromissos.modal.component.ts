@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FiltroCompromissosModalComponent implements OnInit {
 
-  @Input() onAbrirModalFiltro?: EventEmitter<boolean>
+  @Input() onAbrirModalFiltro!: EventEmitter<boolean>
 
   @Output() onEnviarFiltro = new EventEmitter<FiltroCompromisso>()
 
