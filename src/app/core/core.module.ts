@@ -22,7 +22,7 @@ import { AuthModule } from './auth/auth.module';
     AuthModule
   ],
   providers: [
-    UsuarioService
+    UsuarioService,
   ]
 })
 export class CoreModule { }

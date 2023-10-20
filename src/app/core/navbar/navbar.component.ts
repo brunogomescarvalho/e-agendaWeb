@@ -4,6 +4,7 @@ import { UsuarioService } from '../auth/services/usuario.service';
 import { Observable } from 'rxjs';
 import { TokenUsuario } from 'src/app/views/login/models/token.view-model';
 import { AuthService } from '../auth/services/auth.service';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 
 @Component({
@@ -17,10 +18,13 @@ export class NavbarComponent implements OnInit {
 
   usuarioLogado$!: Observable<TokenUsuario | null>;
 
-  constructor(private router: Router, private usuarioService: UsuarioService, private authService: AuthService) { }
+  mostrarCarregamento$!: Observable<boolean>
+
+  constructor(private router: Router, private usuarioService: UsuarioService, private authService: AuthService, private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.usuarioLogado$ = this.usuarioService.usuarioLogado()
+    this.mostrarCarregamento$ = this.loadingService.estaCarregando()
   }
 
   sair() {

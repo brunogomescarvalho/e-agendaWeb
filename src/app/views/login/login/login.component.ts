@@ -6,6 +6,8 @@ import { LoginUsuarioViewModel } from '../models/login.view-model';
 import { UsuarioService } from 'src/app/core/auth/services/usuario.service';
 import { TokenUsuario } from '../models/token.view-model';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
+import { Observable } from 'rxjs';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +17,19 @@ import { AuthService } from 'src/app/core/auth/services/auth.service';
 export class LoginComponent implements OnInit {
   form!: FormGroup
 
+  mostrarCarregamento$!: Observable<boolean>
+
   constructor(private formBuilder: FormBuilder,
     private service: AuthService,
     private toast: ToastrService,
     private router: Router,
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
+    this.mostrarCarregamento$ = this.loadingService.estaCarregando()
+
+
     this.form = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       senha: new FormControl('', [Validators.required])

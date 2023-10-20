@@ -5,24 +5,21 @@ import { LocalStorageService } from "../services/localStorage.service";
 import { UsuarioService } from "../services/usuario.service";
 
 
-export const interceptorToken =(request: HttpRequest<unknown>, next: HttpHandlerFn)=>{
+export const interceptorToken = (request: HttpRequest<unknown>, next: HttpHandlerFn) => {
   const token = inject(LocalStorageService).obterUsuarioLogado().chave
 
   if (!inject(UsuarioService).tokenValido()) {
 
-   inject(Router).navigate(['/login'])
+    inject(Router).navigate(['/login'])
 
     return next(request);
   }
 
-  request = request.clone({
+  const req = request.clone({
 
-    setHeaders: {
-      Authorization: `Bearer ${token}`,
-      token: `${token}`
-    }
+    headers: request.headers.set('Authorization', `Bearer ${token}`),
   })
 
-  return next(request);
+  return next(req);
 }
 

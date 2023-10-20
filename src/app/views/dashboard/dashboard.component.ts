@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/core/auth/services/usuario.service';
 import { TokenUsuario } from '../login/models/token.view-model';
 import { Observable } from 'rxjs';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,6 @@ export class DashboardComponent implements OnInit {
   usuarioLogado$?: Observable<TokenUsuario | null>;
 
   ngOnInit() {
-
     this.usuarioLogado$ = this.usuarioService.usuarioLogado()
 
   }

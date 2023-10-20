@@ -8,10 +8,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { DashboardModule } from './views/dashboard/dashboard.module';
 import { CoreModule } from './core/core.module';
 import { provideHttpClient, withInterceptors } from '@angular/common/http'
-import { interceptorToken } from './core/auth/interceptor/token.interceptor';
+
 import './extensions/form-group.extension'
 import './extensions/http-error-response.extension';
 import { UsuarioService } from './core/auth/services/usuario.service';
+import { LoadingService } from './shared/loading/loading.service';
+import { interceptorToken } from './core/auth/interceptor/httpTokenInteceptor';
+import { interceptorLoading } from './shared/loading/interceptor-loading';
 
 export function logarUsuarioSalvoFactory(usuarioService: UsuarioService) {
   return () => usuarioService.logarUsuarioSalvo()
@@ -36,13 +39,16 @@ export function logarUsuarioSalvoFactory(usuarioService: UsuarioService) {
     })
   ],
   providers: [
+
     {
       provide: APP_INITIALIZER,
       useFactory: logarUsuarioSalvoFactory,
       deps: [UsuarioService],
       multi: true
     },
-    provideHttpClient(withInterceptors([interceptorToken]))],
+    provideHttpClient(withInterceptors([interceptorToken, interceptorLoading])),
+    LoadingService
+  ],
 
   bootstrap: [AppComponent]
 })

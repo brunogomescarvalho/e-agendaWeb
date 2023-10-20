@@ -36,6 +36,9 @@
                         <div class="mt-4  col-sm-10">
                             <button class="btn btn-success mx-3" type="submit">Logar</button>
                             <button routerLink="/registro" class="btn btn-primary" type="button">Cadastre-se</button>
+                            <div *ngIf=(mostrarCarregamento$|async) class="spinner-border text-primary mx-3"
+                                role="status">
+                            </div>
                         </div>
 
                     </form>

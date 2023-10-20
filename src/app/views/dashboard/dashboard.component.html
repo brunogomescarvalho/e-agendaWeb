@@ -6,7 +6,8 @@
           <h1 class="card-title fw-semibold text-primary">Painel do Usuário</h1>
 
           <h2 class="fw-semibold fs-5">Seja Bem-Vindo(a) <span
-              class=' px-3 fs-3 fst-italic text-secondary'>{{(usuarioLogado$ | async)?.usuario?.nome | uppercase}}</span>
+              class=' px-3 fs-3 fst-italic text-secondary'>{{(usuarioLogado$ | async)?.usuario?.nome |
+              uppercase}}</span>
           </h2>
 
           <section id="info" class="fs-5">
@@ -40,6 +41,7 @@
           <img src="/assets/dashboard-image.svg" class="img-fluid" />
         </div>
       </div>
+     
     </div>
   </div>
 </section>
