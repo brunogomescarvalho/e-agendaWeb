@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@ang
 import { FormTarefasViewModel, PrioridadeTarefa } from '../../models/tarefas/form-tarefas.view-model';
 import { ItemTarefaViewModel, StatusItemTarefa } from '../../models/itens-tarefas/item-tarefa.view-model';
 import { ToastrService } from 'ngx-toastr';
+import { CardItemTarefa } from '../card-itens-tarefa/card-itens-tarefa.component';
 
 @Component({
   selector: 'app-formulario-tarefa',
@@ -15,6 +16,8 @@ export class FormularioTarefaComponent implements OnInit {
   prioridadeTarefa: any = []
 
   itemValido: boolean = true
+
+  @Input() tipoCard!: CardItemTarefa
 
   @Input() tarefa!: FormTarefasViewModel
 
@@ -54,7 +57,7 @@ export class FormularioTarefaComponent implements OnInit {
       return
     }
 
-    const item = new ItemTarefaViewModel( "550e8400-e29b-41d4-a716-446655440000",titulo.value, StatusItemTarefa.Adicionado, false)
+    const item = new ItemTarefaViewModel("550e8400-e29b-41d4-a716-446655440000", titulo.value, StatusItemTarefa.Adicionado, false)
     this.itens.push(this.formBuilder.group(item));
     titulo.value = ''
     this.itemValido = true

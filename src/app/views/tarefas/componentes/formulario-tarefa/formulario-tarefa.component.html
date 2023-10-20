@@ -55,7 +55,7 @@
             <div class="row d-flex">
               <div class="col-6" *ngFor="let item of itensFiltrados; let i = index">
                
-                  <app-card-itens-tarefa [item]="item" [cardEditar]="this.tarefa != null" (onFinalizarItem)="finalizar($event)"
+                  <app-card-itens-tarefa [item]="item" [tipoCard]="tipoCard" (onFinalizarItem)="finalizar($event)"
                     (onExcluirItem)="removerItem($event)"
                   ></app-card-itens-tarefa>
                 </div>
